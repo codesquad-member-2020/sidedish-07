@@ -123,7 +123,23 @@
                     <view key="view" contentMode="scaleToFill" id="Hei-mZ-vrj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbL-JS-5Xk">
+                                <rect key="frame" x="0.0" y="796.5" width="414" height="65.5"/>
+                                <color key="backgroundColor" red="0.39313471319999999" green="0.85732406380000004" blue="0.86328983309999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="주문하기">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="anX-Mb-WLZ" firstAttribute="trailing" secondItem="sbL-JS-5Xk" secondAttribute="trailing" id="P4H-kC-Uzn"/>
+                            <constraint firstItem="sbL-JS-5Xk" firstAttribute="leading" secondItem="anX-Mb-WLZ" secondAttribute="leading" id="VX8-pb-leZ"/>
+                            <constraint firstItem="sbL-JS-5Xk" firstAttribute="height" secondItem="anX-Mb-WLZ" secondAttribute="height" multiplier="0.08" id="l4Y-en-sQy"/>
+                            <constraint firstItem="sbL-JS-5Xk" firstAttribute="bottom" secondItem="anX-Mb-WLZ" secondAttribute="bottom" id="nCL-D1-VwU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="anX-Mb-WLZ"/>
                     </view>
                 </viewController>
