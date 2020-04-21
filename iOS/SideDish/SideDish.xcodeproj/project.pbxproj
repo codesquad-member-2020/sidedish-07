@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		445282FC244EE7BD0077384D /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445282FB244EE7BD0077384D /* MenuTableViewCell.swift */; };
 		44A62128244DA6F8000EC9D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A62127244DA6F8000EC9D3 /* AppDelegate.swift */; };
 		44A6212A244DA6F8000EC9D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A62129244DA6F8000EC9D3 /* SceneDelegate.swift */; };
 		44A6212C244DA6F8000EC9D3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6212B244DA6F8000EC9D3 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		445282FB244EE7BD0077384D /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		44A62124244DA6F8000EC9D3 /* SideDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44A62127244DA6F8000EC9D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44A62129244DA6F8000EC9D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				44A6212B244DA6F8000EC9D3 /* ViewController.swift */,
 				44C5AB0F244DD63A00011691 /* KeywordLabel.swift */,
 				44C5AB13244DD68B00011691 /* MenuSectionHeader.swift */,
+				445282FB244EE7BD0077384D /* MenuTableViewCell.swift */,
 				44A6212D244DA6F8000EC9D3 /* Main.storyboard */,
 				44A62130244DA6F9000EC9D3 /* Assets.xcassets */,
 				44A62132244DA6F9000EC9D3 /* LaunchScreen.storyboard */,
@@ -146,6 +149,7 @@
 			files = (
 				44A6212C244DA6F8000EC9D3 /* ViewController.swift in Sources */,
 				44A62128244DA6F8000EC9D3 /* AppDelegate.swift in Sources */,
+				445282FC244EE7BD0077384D /* MenuTableViewCell.swift in Sources */,
 				44C5AB10244DD63A00011691 /* KeywordLabel.swift in Sources */,
 				44C5AB14244DD68B00011691 /* MenuSectionHeader.swift in Sources */,
 				44A6212A244DA6F8000EC9D3 /* SceneDelegate.swift in Sources */,
