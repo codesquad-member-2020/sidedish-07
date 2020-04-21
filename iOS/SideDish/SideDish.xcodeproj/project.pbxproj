@@ -43,6 +43,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		445282FD244F18EB0077384D /* MainScene */ = {
+			isa = PBXGroup;
+			children = (
+				44A6212B244DA6F8000EC9D3 /* ViewController.swift */,
+				445282FE244F190F0077384D /* View */,
+			);
+			path = MainScene;
+			sourceTree = "<group>";
+		};
+		445282FE244F190F0077384D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				44C5AB13244DD68B00011691 /* MenuSectionHeader.swift */,
+				445282FB244EE7BD0077384D /* MenuTableViewCell.swift */,
+				44C5AB0F244DD63A00011691 /* KeywordLabel.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		44A6211B244DA6F8000EC9D3 = {
 			isa = PBXGroup;
 			children = (
@@ -64,10 +83,7 @@
 			children = (
 				44A62127244DA6F8000EC9D3 /* AppDelegate.swift */,
 				44A62129244DA6F8000EC9D3 /* SceneDelegate.swift */,
-				44A6212B244DA6F8000EC9D3 /* ViewController.swift */,
-				44C5AB0F244DD63A00011691 /* KeywordLabel.swift */,
-				44C5AB13244DD68B00011691 /* MenuSectionHeader.swift */,
-				445282FB244EE7BD0077384D /* MenuTableViewCell.swift */,
+				445282FD244F18EB0077384D /* MainScene */,
 				44A6212D244DA6F8000EC9D3 /* Main.storyboard */,
 				44A62130244DA6F9000EC9D3 /* Assets.xcassets */,
 				44A62132244DA6F9000EC9D3 /* LaunchScreen.storyboard */,
