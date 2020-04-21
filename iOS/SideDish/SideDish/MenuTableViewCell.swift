@@ -11,7 +11,11 @@ import UIKit
 class MenuTableViewCell: UITableViewCell {
     static let reuseIdentifier = "menuCell"
     
-    @IBOutlet weak var menuImage: UIImageView!
+    @IBOutlet weak var menuImage: UIImageView! {
+        didSet {
+            configureMenuImage()
+        }
+    }
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -25,7 +29,7 @@ class MenuTableViewCell: UITableViewCell {
         super.init(coder: coder)
     }
     
-    func configure() {
+    func configureMenuImage() {
         menuImage.layer.cornerRadius = menuImage.frame.width / 2
     }
 }
