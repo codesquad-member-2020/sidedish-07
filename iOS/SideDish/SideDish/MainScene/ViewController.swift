@@ -11,6 +11,11 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var menuTableView: UITableView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidLoad() {
         menuTableView.delegate = self
         menuTableView.dataSource = self
