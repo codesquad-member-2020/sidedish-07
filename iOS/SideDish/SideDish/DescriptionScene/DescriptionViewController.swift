@@ -9,6 +9,8 @@
 import UIKit
 
 class DescriptionViewController: UIViewController {
+    static let identifier = "description"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
