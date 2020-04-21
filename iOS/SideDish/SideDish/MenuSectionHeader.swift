@@ -40,8 +40,7 @@ class MenuSectionHeader: UITableViewHeaderFooterView {
             keywordLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.0),
             keywordLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             sectionTitle.topAnchor.constraint(equalTo: keywordLabel.bottomAnchor, constant: 5.0),
-            sectionTitle.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            sectionTitle.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8.0)
+            sectionTitle.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }
 }
