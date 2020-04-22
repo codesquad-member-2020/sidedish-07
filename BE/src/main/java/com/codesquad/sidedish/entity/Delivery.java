@@ -9,7 +9,15 @@ public class Delivery {
 
     private String name;
 
+    public Delivery(String name) {
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }
