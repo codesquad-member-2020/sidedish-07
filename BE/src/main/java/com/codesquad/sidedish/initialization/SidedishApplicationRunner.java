@@ -55,13 +55,13 @@ public class SidedishApplicationRunner implements ApplicationRunner {
         updateProductCategory();
     }
 
-    private JsonNode getNodeFromApi(String url) {
+    private JsonNode getDataFromApi(String url) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(url, JsonNode.class);
     }
 
     private void insertCategory() {
-        JsonNode body = getNodeFromApi(categoryUrl).get("body");
+        JsonNode body = getDataFromApi(categoryUrl).get("body");
         for (JsonNode child : body) {
             Category category = new Category(child.get("name").asText());
             categoryRepository.save(category);
@@ -69,30 +69,10 @@ public class SidedishApplicationRunner implements ApplicationRunner {
     }
 
     private void saveProduct() {
-        JsonNode body = getNodeFromApi(detailUrl).get("body");
+        JsonNode body = getDataFromApi(detailUrl).get("body");
         for (JsonNode child : body) {
-            Product product = new Product();
-            product.setHash(child.get("hash").asText());
-
             JsonNode data = child.get("data");
-            product.setDescription(data.get("product_description").asText());
-            product.setDeliveryFee(data.get("delivery_fee").asText());
-            String deliveryInfo = data.get("delivery_info").asText();
-            String dayOfWeek = deliveryInfo.substring(deliveryInfo.indexOf("["), deliveryInfo.indexOf("]") + 1);
-            product.setDeliveryPossible(dayOfWeek);
-
-            // 가격
-            ArrayNode pricesNode = (ArrayNode)data.get("prices");
-            int[] prices = new int[pricesNode.size()];
-            for (int i = 0; i < pricesNode.size(); ++i) {
-                prices[i] = Integer.parseInt(pricesNode.get(i).asText().replace("원", "").replace(",", ""));
-            }
-            Arrays.sort(prices);
-            if (pricesNode.size() >= 2) {
-                product.setsPrice(prices[0]);
-                product.setnPrice(prices[1]);
-            } else
-                product.setnPrice(prices[0]);
+            Product product = createProduct(child.get("hash").asText(), data);
             productRepository.save(product);
 
             // 이미지
@@ -112,9 +92,35 @@ public class SidedishApplicationRunner implements ApplicationRunner {
         }
     }
 
+    private Product createProduct(String hash, JsonNode data) {
+        Product product = new Product();
+        product.setHash(hash);
+        product.setDescription(data.get("product_description").asText());
+        // 배달 관련 정보 (deliveryFee, deliveryPossible)
+        product.setDeliveryFee(data.get("delivery_fee").asText());
+        String deliveryInfo = data.get("delivery_info").asText();
+        String dayOfWeek = deliveryInfo.substring(deliveryInfo.indexOf("["), deliveryInfo.indexOf("]") + 1);
+        product.setDeliveryPossible(dayOfWeek);
+
+        // 가격
+        ArrayNode pricesNode = (ArrayNode)data.get("prices");
+        int[] prices = new int[pricesNode.size()];
+        for (int i = 0; i < pricesNode.size(); ++i)
+            prices[i] = Integer.parseInt(pricesNode.get(i).asText().replace("원", "").replace(",", ""));
+
+        Arrays.sort(prices);
+        if (pricesNode.size() >= 2) {
+            product.setsPrice(prices[0]);
+            product.setnPrice(prices[1]);
+        } else
+            product.setnPrice(prices[0]);
+
+        return product;
+    }
+
     private void updateProduct(Menu menu) {
         String requestUri = getRequestUrl(menu);
-        JsonNode body = getNodeFromApi(requestUri).get("body");
+        JsonNode body = getDataFromApi(requestUri).get("body");
         for (JsonNode child : body) {
             String hash = child.get("detail_hash").asText();
             Optional<Product> productOptional = productRepository.findByHash(hash);
