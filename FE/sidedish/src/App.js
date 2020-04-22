@@ -1,5 +1,8 @@
 import React from 'react';
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
+import Header from './components/Header/Header';
+import Menu from './components/Menu/Menu';
+import Carousel from './components/Carousel/Carousel';
 
 function App() {
   
@@ -12,6 +15,9 @@ function App() {
   return (
     <React.Fragment>
       <Test>Test</Test>
+      <Header/>
+      <Menu/>
+      <Carousel/>
     </React.Fragment>
   );
 }
