@@ -136,7 +136,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="752.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLe-Jy-HrV">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2564"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="525"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAq-Wt-zer">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
@@ -168,7 +168,7 @@
                                                 <viewLayoutGuide key="frameLayoutGuide" id="7Vn-bL-2Lf"/>
                                             </scrollView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="elm-GK-Gmu">
-                                                <rect key="frame" x="0.0" y="301" width="414" height="2263"/>
+                                                <rect key="frame" x="0.0" y="301" width="414" height="224"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BeW-CC-0ds">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
@@ -289,15 +289,6 @@
                                                             <constraint firstItem="s6E-iw-VRc" firstAttribute="top" secondItem="BeW-CC-0ds" secondAttribute="top" constant="15" id="z9h-Va-MlC"/>
                                                         </constraints>
                                                     </view>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail1" translatesAutoresizingMaskIntoConstraints="NO" id="iKC-B2-NV7">
-                                                        <rect key="frame" x="0.0" y="224" width="414" height="778"/>
-                                                    </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail2" translatesAutoresizingMaskIntoConstraints="NO" id="gog-o5-cYm">
-                                                        <rect key="frame" x="0.0" y="1002" width="414" height="476"/>
-                                                    </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail3" translatesAutoresizingMaskIntoConstraints="NO" id="cgm-Pk-oTT">
-                                                        <rect key="frame" x="0.0" y="1478" width="414" height="785"/>
-                                                    </imageView>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -339,6 +330,7 @@
                         <viewLayoutGuide key="safeArea" id="anX-Mb-WLZ"/>
                     </view>
                     <connections>
+                        <outlet property="detailImageStack" destination="elm-GK-Gmu" id="r1l-cI-ZRb"/>
                         <outlet property="previewScrollView" destination="hAq-Wt-zer" id="Gq8-U7-c8F"/>
                         <outlet property="thumbImageStack" destination="0va-J3-dqQ" id="6Ne-z3-PlO"/>
                     </connections>
@@ -367,9 +359,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="detail1" width="326.66665649414062" height="389"/>
-        <image name="detail2" width="326.66665649414062" height="238.33332824707031"/>
-        <image name="detail3" width="326.66665649414062" height="392.66665649414062"/>
         <image name="sample" width="98.666664123535156" height="98.666664123535156"/>
     </resources>
 </document>
