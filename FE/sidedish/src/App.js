@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Header from './components/Header/Header';
-import Menu from './components/Menu/Menu';
+import Navigation from './components/Navigation/Navigation';
 import Carousel from './components/Carousel/Carousel';
 
 function App() {
@@ -11,12 +11,11 @@ function App() {
     color : #fff;
     text-align : center;
   `
-
+  // const wrap
   return (
     <React.Fragment>
-      <Test>Test</Test>
       <Header/>
-      <Menu/>
+      <Navigation/>
       <Carousel/>
     </React.Fragment>
   );
