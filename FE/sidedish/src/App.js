@@ -11,13 +11,18 @@ function App() {
     color : #fff;
     text-align : center;
   `
-  // const wrap
+  const Wrap = styled.div`
+    width : 100%;
+    text-align : center;
+    padding : 5px;
+    box-sizing : border-box;
+  `
   return (
-    <React.Fragment>
+    <Wrap>
       <Header/>
       <Navigation/>
       <Carousel/>
-    </React.Fragment>
+    </Wrap>
   );
 }
 
