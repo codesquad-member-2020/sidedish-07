@@ -1,9 +1,6 @@
 package com.codesquad.sidedish.initialization;
 
-import com.codesquad.sidedish.entity.Delivery;
-import com.codesquad.sidedish.entity.DetailImage;
-import com.codesquad.sidedish.entity.ThumbImage;
-import com.codesquad.sidedish.entity.Product;
+import com.codesquad.sidedish.entity.*;
 import com.codesquad.sidedish.repository.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -14,37 +11,65 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class SidedishApplicationRunner implements ApplicationRunner {
 
     private static final Logger log = LoggerFactory.getLogger(SidedishApplicationRunner.class);
 
-    private static String detailUri = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/detail";
+    private static final String detailUrl = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/detail";
+    private static final String sideUrl = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/side";
+    private static final String mainUrl = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/main";
+    private static final String soupUrl = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/soup";
+    private static final String categoryUrl = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/best";
 
     private ProductRepository productRepository;
     private ThumbImageRepository thumbImageRepository;
     private DetailImageRepository detailImageRepository;
     private BadgeRepository badgeRepository;
     private DeliveryRepository deliveryRepository;
+    private CategoryRepository categoryRepository;
 
     public SidedishApplicationRunner(ProductRepository productRepository,
                                      ThumbImageRepository thumbImageRepository,
                                      DetailImageRepository detailImageRepository,
                                      BadgeRepository badgeRepository,
-                                     DeliveryRepository deliveryRepository) {
+                                     DeliveryRepository deliveryRepository,
+                                     CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.thumbImageRepository = thumbImageRepository;
         this.detailImageRepository = detailImageRepository;
         this.badgeRepository = badgeRepository;
         this.deliveryRepository = deliveryRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        JsonNode body = getNodeFromApi(detailUri).get("body");
+        insertCategory();
+        saveProduct();
+        updateProduct(Menu.MAIN);
+        updateProduct(Menu.SIDE);
+        updateProduct(Menu.SOUP);
+        updateProductCategory();
+    }
+
+    private JsonNode getNodeFromApi(String url) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, JsonNode.class);
+    }
+
+    private void insertCategory() {
+        JsonNode body = getNodeFromApi(categoryUrl).get("body");
+        for (JsonNode child : body) {
+            Category category = new Category(child.get("name").asText());
+            categoryRepository.save(category);
+        }
+    }
+
+    private void saveProduct() {
+        JsonNode body = getNodeFromApi(detailUrl).get("body");
         for (JsonNode child : body) {
             Product product = new Product();
             product.setHash(child.get("hash").asText());
@@ -56,19 +81,7 @@ public class SidedishApplicationRunner implements ApplicationRunner {
             String dayOfWeek = deliveryInfo.substring(deliveryInfo.indexOf("["), deliveryInfo.indexOf("]") + 1);
             product.setDeliveryPossible(dayOfWeek);
 
-            // 배달
-            if (deliveryInfo.contains("새벽배송")) {
-                // DAO 클래스 만들어서 name = :name 쿼리문으로 DB에서 가져와야 할
-                Delivery delivery = deliveryRepository.findById(1).orElseThrow(IllegalArgumentException::new);
-                product.addDelivery(delivery.getId());
-            }
-
-            if (deliveryInfo.contains("전국택배")) {
-                Delivery delivery = deliveryRepository.findById(2).orElseThrow(IllegalArgumentException::new);
-                product.addDelivery(delivery.getId());
-            }
-
-           // 가격
+            // 가격
             ArrayNode pricesNode = (ArrayNode)data.get("prices");
             int[] prices = new int[pricesNode.size()];
             for (int i = 0; i < pricesNode.size(); ++i) {
@@ -80,7 +93,6 @@ public class SidedishApplicationRunner implements ApplicationRunner {
                 product.setnPrice(prices[1]);
             } else
                 product.setnPrice(prices[0]);
-
             productRepository.save(product);
 
             // 이미지
@@ -100,8 +112,67 @@ public class SidedishApplicationRunner implements ApplicationRunner {
         }
     }
 
-    public static JsonNode getNodeFromApi(String uri) {
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(uri, JsonNode.class);
+    private void updateProduct(Menu menu) {
+        String requestUri = getRequestUrl(menu);
+        JsonNode body = getNodeFromApi(requestUri).get("body");
+        for (JsonNode child : body) {
+            String hash = child.get("detail_hash").asText();
+            Optional<Product> productOptional = productRepository.findByHash(hash);
+            if (!productOptional.isPresent())
+                continue;
+            Product product = productOptional.get();
+            product.setMenu(menu);
+            product.setTitle(child.get("title").asText());
+
+            // 배달 타입
+            ArrayNode deliveryTypes = (ArrayNode)child.get("delivery_type");
+            for (JsonNode type : deliveryTypes) {
+                Delivery delivery = deliveryRepository.findByName(type.asText()).orElse(new Delivery(type.asText()));
+                if (delivery.getId() == null)
+                    delivery = deliveryRepository.save(delivery);
+                product.addDelivery(delivery.getId());
+            }
+
+            // 뱃지 타입
+            ArrayNode badgeTypes = (ArrayNode)child.get("badge");
+            if (!Objects.isNull(badgeTypes)) {
+                for (JsonNode type : badgeTypes) {
+                    Badge badge = badgeRepository.findByName(type.asText()).orElse(new Badge(type.asText()));
+                    if (badge.getId() == null)
+                        badge = badgeRepository.save(badge);
+                    product.addBadge(badge.getId());
+                }
+            }
+            productRepository.save(product);
+        }
+    }
+
+    private void updateProductCategory() {
+        // Category와 랜덤 Product 관계 맺기
+        // 각 Category에는 중복되지 않는 3개의 Product와 연결
+        int countOfProduct = productRepository.countOfNotNull();
+        for (Category category : categoryRepository.findAll()) {
+            Set<Integer> randoms = new HashSet<>();
+            while (randoms.size() < 3) {
+                randoms.add((int) (Math.random() * countOfProduct + 1));
+            }
+            for (Integer id : randoms) {
+                Product product = productRepository.findById(id).orElseThrow(NoSuchElementException::new);
+                product.addCategory(category.getId());
+                productRepository.save(product);
+            }
+        }
+    }
+
+    private String getRequestUrl(Menu menu) {
+        switch (menu) {
+            case MAIN:
+                return mainUrl;
+            case SIDE:
+                return sideUrl;
+            case SOUP:
+                return soupUrl;
+        }
+        throw new IllegalArgumentException();
     }
 }
