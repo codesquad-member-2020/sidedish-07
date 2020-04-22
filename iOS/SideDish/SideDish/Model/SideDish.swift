@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct SideDishData {
+struct SideDishData: Codable {
     var body: [SideDish]
 }
 
-struct SideDish {
+struct SideDish: Codable {
     var detail_hash: String
-    var image: String
+    var image: URL
     var title: String
     var description: String
     var n_price: String?
