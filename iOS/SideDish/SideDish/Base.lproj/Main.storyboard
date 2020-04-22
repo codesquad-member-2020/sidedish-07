@@ -188,17 +188,24 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BeW-CC-0ds">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
                                                         <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u29-tb-6RG">
+                                                                <rect key="frame" x="8" y="91" width="398" height="3"/>
+                                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="3" id="a6E-IN-ZVZ"/>
+                                                                </constraints>
+                                                            </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="s6E-iw-VRc">
-                                                                <rect key="frame" x="15" y="15" width="384" height="74"/>
+                                                                <rect key="frame" x="15" y="15" width="384" height="66"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[모이세] 육개장 1팩(600g)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfO-yY-qkz">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="191.5" height="52"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="191.5" height="44"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제주3대해장국 맛집의 인기메뉴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlA-6W-zir">
-                                                                        <rect key="frame" x="0.0" y="57" width="174" height="17"/>
+                                                                        <rect key="frame" x="0.0" y="49" width="174" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -286,11 +293,14 @@
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="8Lj-lU-pA1" secondAttribute="bottom" constant="15" id="5h3-QG-sB3"/>
+                                                            <constraint firstAttribute="trailing" secondItem="u29-tb-6RG" secondAttribute="trailing" constant="8" id="9SX-sj-MPC"/>
                                                             <constraint firstAttribute="trailing" secondItem="8Lj-lU-pA1" secondAttribute="trailing" constant="15" id="B0i-S2-W5Q"/>
                                                             <constraint firstItem="s6E-iw-VRc" firstAttribute="leading" secondItem="BeW-CC-0ds" secondAttribute="leading" constant="15" id="Ote-Fd-Nvx"/>
-                                                            <constraint firstItem="8Lj-lU-pA1" firstAttribute="top" secondItem="s6E-iw-VRc" secondAttribute="bottom" constant="15" id="Tue-CU-hse"/>
+                                                            <constraint firstItem="u29-tb-6RG" firstAttribute="top" secondItem="s6E-iw-VRc" secondAttribute="bottom" constant="10" id="QJw-Bd-8OQ"/>
                                                             <constraint firstAttribute="trailing" secondItem="s6E-iw-VRc" secondAttribute="trailing" constant="15" id="VgB-zZ-a2j"/>
                                                             <constraint firstItem="8Lj-lU-pA1" firstAttribute="leading" secondItem="BeW-CC-0ds" secondAttribute="leading" constant="15" id="ji0-HU-wBo"/>
+                                                            <constraint firstItem="u29-tb-6RG" firstAttribute="leading" secondItem="BeW-CC-0ds" secondAttribute="leading" constant="8" id="np0-ut-PNS"/>
+                                                            <constraint firstItem="8Lj-lU-pA1" firstAttribute="top" secondItem="u29-tb-6RG" secondAttribute="bottom" constant="10" id="ymg-Ee-34y"/>
                                                             <constraint firstItem="s6E-iw-VRc" firstAttribute="top" secondItem="BeW-CC-0ds" secondAttribute="top" constant="15" id="z9h-Va-MlC"/>
                                                         </constraints>
                                                     </view>
