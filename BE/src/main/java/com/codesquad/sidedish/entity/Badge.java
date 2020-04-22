@@ -8,4 +8,12 @@ public class Badge {
     private Integer id;
 
     private String name;
+
+    public Badge(String name) {
+        this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
 }
