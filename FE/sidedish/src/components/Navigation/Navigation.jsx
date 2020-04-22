@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled'
 
-const Menu = () => {
+const Navigation = () => {
+
+    
     return (
         <div>
-            Menu
+            Navigation
         </div>
     );
 };
 
-export default Menu;
+export default Navigation;

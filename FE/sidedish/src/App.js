@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Header from './components/Header/Header';
-import Menu from './components/Menu/Menu';
+import Navigation from './components/Navigation/Navigation';
 import Carousel from './components/Carousel/Carousel';
 
 function App() {
@@ -11,14 +11,18 @@ function App() {
     color : #fff;
     text-align : center;
   `
-
+  const Wrap = styled.div`
+    width : 100%;
+    text-align : center;
+    padding : 5px;
+    box-sizing : border-box;
+  `
   return (
-    <React.Fragment>
-      <Test>Test</Test>
+    <Wrap>
       <Header/>
-      <Menu/>
+      <Navigation/>
       <Carousel/>
-    </React.Fragment>
+    </Wrap>
   );
 }
 
