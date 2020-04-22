@@ -50,8 +50,8 @@ CREATE TABLE detail_image (
 -- m:n 맵핑을 위한 테이블
 CREATE TABLE product_category (
     product INT references product(id) ,
-    categroy INT references category(id) ,
-    PRIMARY KEY (product, categroy)
+    category INT references category(id) ,
+    PRIMARY KEY (product, category)
 );
 
 CREATE TABLE product_badge (
