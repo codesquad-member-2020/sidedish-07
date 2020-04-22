@@ -17,6 +17,7 @@
 		44A62134244DA6F9000EC9D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A62132244DA6F9000EC9D3 /* LaunchScreen.storyboard */; };
 		44C5AB10244DD63A00011691 /* KeywordLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C5AB0F244DD63A00011691 /* KeywordLabel.swift */; };
 		44C5AB14244DD68B00011691 /* MenuSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C5AB13244DD68B00011691 /* MenuSectionHeader.swift */; };
+		44DE3E4724506BD1007C5AA8 /* SideDish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DE3E4624506BD1007C5AA8 /* SideDish.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		44A62135244DA6F9000EC9D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44C5AB0F244DD63A00011691 /* KeywordLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordLabel.swift; sourceTree = "<group>"; };
 		44C5AB13244DD68B00011691 /* MenuSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSectionHeader.swift; sourceTree = "<group>"; };
+		44DE3E4624506BD1007C5AA8 /* SideDish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDish.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			children = (
 				44A62127244DA6F8000EC9D3 /* AppDelegate.swift */,
 				44A62129244DA6F8000EC9D3 /* SceneDelegate.swift */,
+				44DE3E4524506BC2007C5AA8 /* Model */,
 				445282FD244F18EB0077384D /* MainScene */,
 				44528302244F23CC0077384D /* DescriptionScene */,
 				44A6212D244DA6F8000EC9D3 /* Main.storyboard */,
@@ -101,6 +104,14 @@
 				44A62135244DA6F9000EC9D3 /* Info.plist */,
 			);
 			path = SideDish;
+			sourceTree = "<group>";
+		};
+		44DE3E4524506BC2007C5AA8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44DE3E4624506BD1007C5AA8 /* SideDish.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +191,7 @@
 				445282FC244EE7BD0077384D /* MenuTableViewCell.swift in Sources */,
 				44C5AB10244DD63A00011691 /* KeywordLabel.swift in Sources */,
 				44C5AB14244DD68B00011691 /* MenuSectionHeader.swift in Sources */,
+				44DE3E4724506BD1007C5AA8 /* SideDish.swift in Sources */,
 				44A6212A244DA6F8000EC9D3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
