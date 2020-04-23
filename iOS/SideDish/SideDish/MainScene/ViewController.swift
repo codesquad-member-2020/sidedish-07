@@ -48,6 +48,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell,
             let data = data else { return UITableViewCell() }
+        cell.eventBadgeStackView.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
         let sideDish = data[indexPath.row]
         do {
             let imageData = try Data(contentsOf: sideDish.image)
@@ -58,6 +61,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.titleLabel.text = sideDish.title
         cell.descriptionLabel.text = sideDish.description
         cell.priceLabel.text = sideDish.s_price
+        guard let badges = sideDish.badge else { return cell }
+        badges.forEach {
+            let badge = KeywordLabel()
+            badge.text = $0
+            cell.eventBadgeStackView.addArrangedSubview(badge)
+        }
         return cell
     }
     

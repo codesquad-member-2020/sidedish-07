@@ -45,27 +45,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-F6-1vD">
-                                                    <rect key="frame" x="142" y="62.5" width="244" height="49"/>
+                                                    <rect key="frame" x="142" y="62.5" width="244" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <color key="textColor" red="0.22445049880000001" green="0.77192187310000004" blue="0.75248271229999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="59M-ZN-2BN">
-                                                    <rect key="frame" x="142" y="119.5" width="86" height="20.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFy-3f-EZ2" customClass="KeywordLabel" customModule="SideDish" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vio-Kq-qdG" customClass="KeywordLabel" customModule="SideDish" customModuleProvider="target">
-                                                            <rect key="frame" x="44" y="0.0" width="42" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" ambiguous="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="59M-ZN-2BN">
+                                                    <rect key="frame" x="142" y="90" width="42" height="50"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
