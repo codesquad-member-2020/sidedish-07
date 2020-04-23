@@ -21,6 +21,7 @@
 		44DE3E4924506F9E007C5AA8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DE3E4824506F9E007C5AA8 /* NetworkManager.swift */; };
 		44DE3E4B2451D232007C5AA8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DE3E4A2451D232007C5AA8 /* DataManager.swift */; };
 		44DE3E4D2451E0BF007C5AA8 /* MenuTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DE3E4C2451E0BF007C5AA8 /* MenuTableViewDataSource.swift */; };
+		44DE3E4F2451E22A007C5AA8 /* PriceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DE3E4E2451E22A007C5AA8 /* PriceLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		44DE3E4824506F9E007C5AA8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		44DE3E4A2451D232007C5AA8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		44DE3E4C2451E0BF007C5AA8 /* MenuTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewDataSource.swift; sourceTree = "<group>"; };
+		44DE3E4E2451E22A007C5AA8 /* PriceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			children = (
 				44C5AB13244DD68B00011691 /* MenuSectionHeader.swift */,
 				445282FB244EE7BD0077384D /* MenuTableViewCell.swift */,
+				44DE3E4E2451E22A007C5AA8 /* PriceLabel.swift */,
 				44C5AB0F244DD63A00011691 /* KeywordLabel.swift */,
 			);
 			path = View;
@@ -200,6 +203,7 @@
 				44528304244F23ED0077384D /* DescriptionViewController.swift in Sources */,
 				44A62128244DA6F8000EC9D3 /* AppDelegate.swift in Sources */,
 				445282FC244EE7BD0077384D /* MenuTableViewCell.swift in Sources */,
+				44DE3E4F2451E22A007C5AA8 /* PriceLabel.swift in Sources */,
 				44C5AB10244DD63A00011691 /* KeywordLabel.swift in Sources */,
 				44C5AB14244DD68B00011691 /* MenuSectionHeader.swift in Sources */,
 				44DE3E4724506BD1007C5AA8 /* SideDish.swift in Sources */,
