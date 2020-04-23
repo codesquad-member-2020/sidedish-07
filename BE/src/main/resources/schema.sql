@@ -17,7 +17,8 @@ CREATE TABLE product (
     s_price INT ,
     n_price INT not null ,
     delivery_fee varchar(64) not null ,
-    delivery_possible varchar(64) not null
+    delivery_possible varchar(64) not null ,
+    image varchar(128)
 );
 
 CREATE TABLE category (
