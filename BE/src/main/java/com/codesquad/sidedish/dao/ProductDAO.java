@@ -3,7 +3,6 @@ package com.codesquad.sidedish.dao;
 import com.codesquad.sidedish.dto.DetailDTO;
 import com.codesquad.sidedish.dto.SimpleDTO;
 import com.codesquad.sidedish.entity.Menu;
-import com.codesquad.sidedish.exception.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -41,8 +40,8 @@ public class ProductDAO {
         return products;
     }
 
-    public DetailDTO selectDetailByHash(String hash) throws ResourceNotFound {
-        DetailDTO product = queryFromProductByHash(hash).orElseThrow(ResourceNotFound::new);
+    public DetailDTO selectDetailByHash(String hash) {
+        DetailDTO product = queryFromProductByHash(hash);
         final String sqlForThumbImages = "SELECT ti.url as url" +
                 " FROM thumb_image ti" +
                 " WHERE ti.product = :productId";
@@ -79,14 +78,14 @@ public class ProductDAO {
         );
     }
 
-    private Optional<DetailDTO> queryFromProductByHash(String hash) throws DataAccessException {
+    private DetailDTO queryFromProductByHash(String hash) throws DataAccessException {
         final String sql = "SELECT id, hash, title, description, CONCAT(FORMAT(s_price, 0), '원') as s_price_currency_format, CONCAT(FORMAT(n_price, 0), '원') as n_price_currency_format, s_price, n_price, delivery_fee, delivery_possible, image" +
                 " FROM product" +
                 " WHERE hash = :hash";
         return namedParameterJdbcTemplate.queryForObject(sql,
                 new MapSqlParameterSource("hash", hash),
                 (rs, rowNum) ->
-                        Optional.of( new DetailDTO(
+                        new DetailDTO(
                                 rs.getInt("id"),
                                 rs.getString("hash"),
                                 rs.getString("title"),
@@ -97,7 +96,7 @@ public class ProductDAO {
                                 rs.getString("delivery_fee"),
                                 rs.getString("delivery_possible"),
                                 rs.getString("image")
-                        ))
+                        )
         );
     }
 
