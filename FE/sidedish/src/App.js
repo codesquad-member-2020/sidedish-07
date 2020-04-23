@@ -16,7 +16,6 @@ function App() {
 
   const Wrap = styled.div`
     width : 100%;
-    text-align : center;
     padding : 5px;
     box-sizing : border-box;
   `
