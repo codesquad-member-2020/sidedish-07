@@ -11,16 +11,16 @@ const Navigation = () => {
     `;
 
     const NavUL = styled.ul`
-        width : 700px;
-        height : 20px;
+        width : 1300px;
+        height : 50px;
         display : flex;
         justify-content : space-around;
     `;
     const Nav = styled.li`
-        height : 20px;
-        line-height : 20px;
+        height : 50px;
+        line-height : 50px;
         color : white;
-        font-size : 8px;
+        font-size : 15px;
         font-weight : normal;
         &:hover{
             color : #18C2BD;
