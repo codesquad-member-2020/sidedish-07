@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     private var dataManager = DataManager()
+    private var menuTableViewDataSource: MenuTableViewDataSource?
     
     @IBOutlet weak var menuTableView: UITableView!
         
@@ -19,8 +20,9 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        menuTableViewDataSource = MenuTableViewDataSource(dataManager: dataManager)
         menuTableView.delegate = self
-        menuTableView.dataSource = self
+        menuTableView.dataSource = menuTableViewDataSource
         menuTableView.register(MenuSectionHeader.self, forHeaderFooterViewReuseIdentifier: MenuSectionHeader.reuseIdentifier)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: DataManager.dataDidLoad, object: nil)
@@ -35,29 +37,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let data = dataManager.sectionDataList[section] else { return 0 }
-        return data.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell,
-            let data = dataManager.sectionDataList[indexPath.section] else { return UITableViewCell() }
-        let sideDish = data[indexPath.row]
-        cell.eventBadgeStackView.arrangedSubviews.forEach {
-            $0.removeFromSuperview()
-        }
-        cell.sideDish = sideDish
-        NetworkManager.httpRequest(url: sideDish.image, method: .GET) { (data, response, error) in
-            guard let data = data else { return }
-            DispatchQueue.main.async {
-                cell.menuImage.image = UIImage(data: data)
-            }
-        }
-        return cell
-    }
-    
+extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MenuSectionHeader.reuseIdentifier) as? MenuSectionHeader else { return nil }
         let keywordList = [0: "메인반찬",
@@ -69,10 +49,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         header.keywordLabel.text = keywordList[section]
         header.sectionTitle.text = titleList[section]
         return header
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return dataManager.sectionDataList.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
