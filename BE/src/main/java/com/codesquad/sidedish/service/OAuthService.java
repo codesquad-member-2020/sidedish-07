@@ -22,22 +22,22 @@ public class OAuthService {
     private final String CLIENTSECRET = "c0195e8d988b81aee4d7565da58941dd8e8fcc5a";
     private final String URL = "https://github.com/login/oauth/access_token";
 
-    public void getAccessToken(String code) {
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
-        Map map = new HashMap<String, String>();
-        map.put("Content-Type", "application/json");
+    public OAuthGithubToken getAccessToken(String code) {
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+        Map<String, String> header = new HashMap<>();
+        header.put("Content-Type", "application/json");
 
-        headers.setAll(map);
+        headers.setAll(header);
 
-        Map req_payload = new HashMap();
-        req_payload.put("code", code);
-        req_payload.put("client_id", CLIENTID);
-        req_payload.put("client_secret", CLIENTSECRET);
+        Map<String, String> requestPayload = new HashMap<>();
+        requestPayload.put("code", code);
+        requestPayload.put("client_id", CLIENTID);
+        requestPayload.put("client_secret", CLIENTSECRET);
 
-        HttpEntity<?> request = new HttpEntity<>(req_payload, headers);
+        HttpEntity<?> request = new HttpEntity<>(requestPayload, headers);
 
-        ResponseEntity<?> response = new RestTemplate().postForEntity(URL, request, String.class);
-        log.debug("{}", response.getBody());
+        ResponseEntity<?> response = new RestTemplate().postForEntity(URL, request, OAuthGithubToken.class);
+        return (OAuthGithubToken) response.getBody();
     }
 
 }
