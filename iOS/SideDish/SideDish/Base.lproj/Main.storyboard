@@ -44,7 +44,7 @@
                                                     <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-F6-1vD">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-F6-1vD" customClass="PriceLabel" customModule="SideDish" customModuleProvider="target">
                                                     <rect key="frame" x="142" y="62.5" width="244" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <color key="textColor" red="0.22445049880000001" green="0.77192187310000004" blue="0.75248271229999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -77,7 +77,7 @@
                                             <outlet property="descriptionLabel" destination="QEQ-9S-6lA" id="dz1-C5-nhv"/>
                                             <outlet property="eventBadgeStackView" destination="59M-ZN-2BN" id="RSD-7O-y2K"/>
                                             <outlet property="menuImage" destination="PpS-Ic-v6v" id="nhb-Dz-ye3"/>
-                                            <outlet property="priceLabel" destination="oK3-F6-1vD" id="OWF-Bk-ZPT"/>
+                                            <outlet property="priceLabel" destination="oK3-F6-1vD" id="aae-fC-NgE"/>
                                             <outlet property="titleLabel" destination="daR-7v-0Ce" id="Naf-JB-ZQ0"/>
                                         </connections>
                                     </tableViewCell>

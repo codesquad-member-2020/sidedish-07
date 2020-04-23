@@ -24,7 +24,7 @@ class MenuTableViewCell: UITableViewCell {
     }
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var priceLabel: PriceLabel!
     @IBOutlet weak var eventBadgeStackView: UIStackView!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -40,10 +40,11 @@ class MenuTableViewCell: UITableViewCell {
     }
     
     private func updateCell() {
-        titleLabel.text = sideDish?.title
-        descriptionLabel.text = sideDish?.description
-        priceLabel.text = sideDish?.s_price
-        if let badges = sideDish?.badge {
+        guard let sideDish = sideDish else { return }
+        titleLabel.text = sideDish.title
+        descriptionLabel.text = sideDish.description
+        priceLabel.setPrice(sale: sideDish.n_price, normal: sideDish.s_price)
+        if let badges = sideDish.badge {
             badges.forEach {
                 let badge = KeywordLabel()
                 badge.text = $0
