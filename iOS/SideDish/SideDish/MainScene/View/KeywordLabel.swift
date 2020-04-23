@@ -28,7 +28,18 @@ class KeywordLabel: UILabel {
         return CGSize(width: width, height: heigth)
     }
     
-    func configure() {
+    func setKeyword(_ keyword: String) {
+        let keywordList = ["이벤트특가": UIColor.purple,
+                           "론칭특가": UIColor.purple,
+                           "품절": UIColor.black,
+                           "사은품증정": UIColor.orange]
+        layer.borderColor = keywordList[keyword]?.cgColor
+        backgroundColor = keywordList[keyword]
+        text = keyword
+        textColor = .white
+    }
+    
+    private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.borderWidth = 0.8
         font = UIFont.boldSystemFont(ofSize: 10.0)
