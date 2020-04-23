@@ -26,6 +26,8 @@ public class Product {
 
     private String deliveryPossible;
 
+    private String image;
+
     private Set<ProductCategory> categories = new HashSet<>();
 
     private Set<ProductBadge> badges = new HashSet<>();
@@ -102,6 +104,14 @@ public class Product {
 
     public void setDeliveryPossible(String deliveryPossible) {
         this.deliveryPossible = deliveryPossible;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Set<ProductCategory> getCategories() {
