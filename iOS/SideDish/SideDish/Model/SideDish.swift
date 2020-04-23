@@ -9,15 +9,15 @@
 import Foundation
 
 struct SideDishData: Codable {
-    var body: [SideDish]
+    var content: [SideDish]
 }
 
 struct SideDish: Codable {
-    var detail_hash: String
+    var hash: String
     var image: String
     var title: String
     var description: String
-    var n_price: String?
-    var s_price: String
-    var badge: [String]?
+    var salePrice: String
+    var normalPrice: String
+    var badges: [String]?
 }

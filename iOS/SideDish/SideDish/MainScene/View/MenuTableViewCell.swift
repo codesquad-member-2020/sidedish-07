@@ -43,8 +43,8 @@ class MenuTableViewCell: UITableViewCell {
         guard let sideDish = sideDish else { return }
         titleLabel.text = sideDish.title
         descriptionLabel.text = sideDish.description
-        priceLabel.setPrice(sale: sideDish.n_price, normal: sideDish.s_price)
-        if let badges = sideDish.badge {
+        priceLabel.setPrice(sale: sideDish.salePrice, normal: sideDish.normalPrice)
+        if let badges = sideDish.badges {
             badges.forEach {
                 let badge = KeywordLabel()
                 badge.setKeyword($0)
