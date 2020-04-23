@@ -126,6 +126,7 @@ public class SidedishApplicationRunner implements ApplicationRunner {
             Optional<Product> productOptional = productRepository.findByHash(hash);
             if (!productOptional.isPresent())
                 continue;
+            
             Product product = productOptional.get();
             product.setMenu(menu);
             product.setTitle(child.get("title").asText());
@@ -136,16 +137,19 @@ public class SidedishApplicationRunner implements ApplicationRunner {
                 Delivery delivery = deliveryRepository.findByName(type.asText()).orElse(new Delivery(type.asText()));
                 if (delivery.getId() == null)
                     delivery = deliveryRepository.save(delivery);
+
                 product.addDelivery(delivery.getId());
             }
 
             // 뱃지 타입
             ArrayNode badgeTypes = (ArrayNode)child.get("badge");
+            // 간혹 badge 데이터가 없는 JSON이 존재해서 Null 체크
             if (!Objects.isNull(badgeTypes)) {
                 for (JsonNode type : badgeTypes) {
                     Badge badge = badgeRepository.findByName(type.asText()).orElse(new Badge(type.asText()));
                     if (badge.getId() == null)
                         badge = badgeRepository.save(badge);
+
                     product.addBadge(badge.getId());
                 }
             }
@@ -159,10 +163,10 @@ public class SidedishApplicationRunner implements ApplicationRunner {
         int countOfProduct = productRepository.countOfNotNull();
         for (Category category : categoryRepository.findAll()) {
             Set<Integer> randoms = new HashSet<>();
-            while (randoms.size() < 3) {
+            while (randoms.size() < 3)
                 randoms.add((int) (Math.random() * countOfProduct + 1));
-            }
-            for (Integer id : randoms) {
+
+            for (int id : randoms) {
                 Product product = productRepository.findById(id).orElseThrow(NoSuchElementException::new);
                 product.addCategory(category.getId());
                 productRepository.save(product);
