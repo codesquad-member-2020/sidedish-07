@@ -26,7 +26,7 @@ class DataManager {
     
     static let dataDidLoad = NSNotification.Name.init("dataDidLoad")
     
-    private let serverUrl = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/baminchan/"
+    private let serverUrl = "http://15.165.190.16/products/"
     private(set) var sectionDataList = [Int: [SideDish]]()
 
     func loadData() {
@@ -41,7 +41,7 @@ class DataManager {
             let decoder = JSONDecoder()
             do {
                 let decodedData = try decoder.decode(SideDishData.self, from: data)
-                self.sectionDataList[category.section] = decodedData.body
+                self.sectionDataList[category.section] = decodedData.content
                 NotificationCenter.default.post(name: DataManager.dataDidLoad, object: nil)
             } catch {
                 
