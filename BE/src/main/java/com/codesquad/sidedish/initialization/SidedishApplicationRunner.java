@@ -126,10 +126,11 @@ public class SidedishApplicationRunner implements ApplicationRunner {
             Optional<Product> productOptional = productRepository.findByHash(hash);
             if (!productOptional.isPresent())
                 continue;
-            
+
             Product product = productOptional.get();
             product.setMenu(menu);
             product.setTitle(child.get("title").asText());
+            product.setImage(child.get("image").asText());
 
             // 배달 타입
             ArrayNode deliveryTypes = (ArrayNode)child.get("delivery_type");
