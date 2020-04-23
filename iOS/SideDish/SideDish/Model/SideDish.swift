@@ -14,7 +14,7 @@ struct SideDishData: Codable {
 
 struct SideDish: Codable {
     var detail_hash: String
-    var image: URL
+    var image: String
     var title: String
     var description: String
     var n_price: String?

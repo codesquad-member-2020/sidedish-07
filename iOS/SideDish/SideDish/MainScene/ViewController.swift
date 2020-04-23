@@ -11,7 +11,14 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var menuTableView: UITableView!
     
-    var data: [SideDish]?
+    var main: [SideDish]?
+    var soup: [SideDish]?
+    var side: [SideDish]?
+    var sectionDataList: [Int: [SideDish]?] {
+        return [0: main,
+                1: soup,
+                2: side]
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -29,7 +36,33 @@ class ViewController: UIViewController {
             let decoder = JSONDecoder()
             do {
                 let decodedData = try decoder.decode(SideDishData.self, from: data)
-                self.data = decodedData.body
+                self.main = decodedData.body
+                DispatchQueue.main.async {
+                    self.menuTableView.reloadData()
+                }
+            } catch {
+                
+            }
+        }
+        NetworkManager.httpRequest(url: NetworkManager.serverUrl + "soup", method: .GET) { (data, _, _) in
+            guard let data = data else { return }
+            let decoder = JSONDecoder()
+            do {
+                let decodedData = try decoder.decode(SideDishData.self, from: data)
+                self.soup = decodedData.body
+                DispatchQueue.main.async {
+                    self.menuTableView.reloadData()
+                }
+            } catch {
+                
+            }
+        }
+        NetworkManager.httpRequest(url: NetworkManager.serverUrl + "side", method: .GET) { (data, _, _) in
+            guard let data = data else { return }
+            let decoder = JSONDecoder()
+            do {
+                let decodedData = try decoder.decode(SideDishData.self, from: data)
+                self.side = decodedData.body
                 DispatchQueue.main.async {
                     self.menuTableView.reloadData()
                 }
@@ -42,39 +75,39 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data?.count ?? 0
+        guard let data = sectionDataList[section],
+            let count = data?.count else { return 0 }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell,
-            let data = data else { return UITableViewCell() }
+            let data = sectionDataList[indexPath.section],
+            let sideDish = data?[indexPath.row] else { return UITableViewCell() }
+        
         cell.eventBadgeStackView.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
-        let sideDish = data[indexPath.row]
-        do {
-            let imageData = try Data(contentsOf: sideDish.image)
-            cell.menuImage.image = UIImage(data: imageData)
-        } catch {
-            print(error)
-        }
-        cell.titleLabel.text = sideDish.title
-        cell.descriptionLabel.text = sideDish.description
-        cell.priceLabel.text = sideDish.s_price
-        guard let badges = sideDish.badge else { return cell }
-        badges.forEach {
-            let badge = KeywordLabel()
-            badge.text = $0
-            cell.eventBadgeStackView.addArrangedSubview(badge)
+        cell.sideDish = sideDish
+        NetworkManager.httpRequest(url: sideDish.image, method: .GET) { (data, response, error) in
+            guard let data = data else { return }
+            DispatchQueue.main.async {
+                cell.menuImage.image = UIImage(data: data)
+            }
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MenuSectionHeader.reuseIdentifier) as? MenuSectionHeader else { return nil }
-        
-        header.keywordLabel.text = "밑반찬"
-        header.sectionTitle.text = "언제 먹어도 든든한 밑반찬"
+        let keywordList = [0: "메인반찬",
+                           1: "국∙찌개",
+                           2: "밑반찬"]
+        let titleList = [0: "한그릇 뚝딱 메인 요리",
+                         1: "김이 모락모락 국∙찌개",
+                         2: "언제 먹어도 든든한 밑반찬"]
+        header.keywordLabel.text = keywordList[section]
+        header.sectionTitle.text = titleList[section]
         return header
     }
     
