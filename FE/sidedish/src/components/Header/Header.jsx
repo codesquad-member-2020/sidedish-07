@@ -27,12 +27,13 @@ const Header = () => {
         margin : 5px;
     `;
     const HeaderContentWrap = styled.div`
-        height : 60px;
+        height : 70px;
         display : flex;
-        line-height : 60px;
+        line-height : 70px;
     `;
     const Logo = styled.img`
-        height : 60px;
+        height : 70px;
+        margin-left : 10px;
     `;
     const SearchBar = styled.div`
         margin : 0px 20px;
@@ -60,7 +61,7 @@ const Header = () => {
             </HeaderTopWrap>
             <LineWrap><Line/></LineWrap>
             <HeaderContentWrap>
-                <Logo src="https://lh3.googleusercontent.com/proxy/i7KX1K6Qbh-tHqn1jgnEDxccVEX3YsHaueRXrfO_MDGjPAg-QJraNvuxvozEZL6wR24MrSzfiubGfHvxu-mDgoC4Q-I1axisceF9x3-CALRpkZdzYzI0hs6DOpb6UX8EelX6LJVzrOijLu8fvhFGnA_5I2e1gMOmxnA5y3Dfnh0Csqu_--s1Y3QGz1ac-83S4rHfLGFx73TcGP8YnmxEYNC26M4K6HlItk4rZ8ABXCjOgQcoo5TDl8sOayg2hiW2gmmlvaVkOE77kciw-Xka0fUUjClmXw"/>
+                <Logo src="https://www.dailypop.kr/news/photo/201811/36399_61481_3927.jpg"/>
                 <SearchBar><SearchInput/></SearchBar>
             </HeaderContentWrap>
             </React.Fragment>
