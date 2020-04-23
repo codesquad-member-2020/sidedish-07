@@ -4,7 +4,6 @@ import com.codesquad.sidedish.dao.ProductDAO;
 import com.codesquad.sidedish.dto.DetailDTO;
 import com.codesquad.sidedish.dto.SimpleDTO;
 import com.codesquad.sidedish.entity.Menu;
-import com.codesquad.sidedish.exception.ResourceNotFound;
 import com.codesquad.sidedish.response.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,8 +47,6 @@ public class SidedishController {
             processDeliveryInfo(product);
         } catch (DataAccessException e) {
             return new ResponseEntity<>(new ResponseData(ResponseData.STATUS.ERROR, "존재하지 않는 상품입니다."), HttpStatus.NOT_FOUND);
-        } catch (ResourceNotFound e) {
-            return new ResponseEntity<>(new ResponseData(ResponseData.STATUS.ERROR, e.getMessage()), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(new ResponseData(ResponseData.STATUS.SUCCESS, product), HttpStatus.OK);
     }
