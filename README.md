@@ -43,3 +43,6 @@ SIDEDISH 서비스 - 7팀
 
 [백로그 스프레드시트 바로가기](https://docs.google.com/spreadsheets/d/1YM8sFoZ-OC4oGOPNtcUrrE0E7h5dUbEcykPH4D09vi8/edit?usp=sharing)
 
+## API 정리 문서
+
+[데이터 요청 API 문서](https://github.com/codesquad-member-2020/sidedish-07/tree/dev/BE)
