@@ -47,7 +47,7 @@ class MenuTableViewCell: UITableViewCell {
         if let badges = sideDish.badge {
             badges.forEach {
                 let badge = KeywordLabel()
-                badge.text = $0
+                badge.setKeyword($0)
                 eventBadgeStackView.addArrangedSubview(badge)
             }
         }
