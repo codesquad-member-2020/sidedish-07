@@ -33,7 +33,7 @@ struct SideDishUseCase {
     }
     
     static func loadList(category: Category, completed: @escaping (Int, [SideDish]) -> ()) {
-        try? NetworkManager.httpRequest(url: serverUrl + category.rawValue, method: .GET, completionHandler: { (data, _, error) in
+        NetworkManager.httpRequest(url: serverUrl + category.rawValue, method: .GET, completionHandler: { (data, _, error) in
             guard let data = data else { return }
             let list = try? JSONDecoder().decode(SideDishData.self, from: data).content
             completed(category.section, list ?? [])
