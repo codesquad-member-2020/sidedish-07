@@ -9,41 +9,59 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var menuTableView: UITableView!
+    private let dataManager = DataManager()
+    private var menuTableViewDataSource: MenuTableViewDataSource?
     
+    @IBOutlet weak var menuTableView: UITableView!
+        
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
     }
     
     override func viewDidLoad() {
+        menuTableViewDataSource = MenuTableViewDataSource(dataManager: dataManager)
         menuTableView.delegate = self
-        menuTableView.dataSource = self
-        
+        menuTableView.dataSource = menuTableViewDataSource
         menuTableView.register(MenuSectionHeader.self, forHeaderFooterViewReuseIdentifier: MenuSectionHeader.reuseIdentifier)
+        addObservers()
+        configureUseCase()
+    }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(loadFailed), name: SideDishUseCase.loadFailed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadSection(_:)), name: DataManager.reloadSection, object: nil)
+    }
+    
+    private func configureUseCase() {
+        SideDishUseCase.loadAll { (section, list) in
+            DispatchQueue.main.async {
+                self.dataManager.updateData(section: section, data: list)
+            }
+        }
+    }
+    
+    @objc private func loadFailed() {
+        let alert = UIAlertController(title: "데이터 로드 실패!", message: "네트워크 연결을 확인해주세요!", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    
+    @objc private func reloadSection(_ notification: NSNotification) {
+        guard let section = notification.userInfo?[DataManager.reloadSection] as? Int else { return }
+        self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell else { return UITableViewCell() }
-        return cell
-    }
-    
+extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier:
-            MenuSectionHeader.reuseIdentifier) as! MenuSectionHeader
-        header.keywordLabel.text = "밑반찬"
-        header.sectionTitle.text = "언제 먹어도 든든한 밑반찬"
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MenuSectionHeader.reuseIdentifier) as? MenuSectionHeader else { return nil }
+        header.keywordLabel.text = dataManager.keywordList[section]
+        header.sectionTitle.text = dataManager.titleList[section]
         return header
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
