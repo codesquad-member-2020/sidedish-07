@@ -12,7 +12,7 @@ struct SideDishData: Codable {
     var content: [SideDish]
 }
 
-struct SideDish: Codable {
+struct SideDish: Codable, Equatable {
     var hash: String
     var image: String
     var title: String

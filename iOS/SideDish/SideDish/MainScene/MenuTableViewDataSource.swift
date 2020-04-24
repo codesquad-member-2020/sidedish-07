@@ -29,6 +29,7 @@ class MenuTableViewDataSource: NSObject, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell,
             let data = dataManager.sectionDataList[indexPath.section] else { return UITableViewCell() }
         let sideDish = data[indexPath.row]
+        guard cell.sideDish != sideDish else { return cell }
         cell.sideDish = sideDish
         NetworkManager.httpRequest(url: sideDish.image, method: .GET) { (data, response, error) in
             guard let data = data else { return }
