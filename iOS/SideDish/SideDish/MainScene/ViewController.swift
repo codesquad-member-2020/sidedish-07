@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    private var dataManager = DataManager()
+    private let dataManager = DataManager()
     private var menuTableViewDataSource: MenuTableViewDataSource?
     
     @IBOutlet weak var menuTableView: UITableView!
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc func reloadSection(_ notification: NSNotification) {
+    @objc private func reloadSection(_ notification: NSNotification) {
         guard let section = notification.userInfo?[DataManager.reloadSection] as? Int else { return }
         self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
     }
@@ -49,14 +49,8 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MenuSectionHeader.reuseIdentifier) as? MenuSectionHeader else { return nil }
-        let keywordList = [0: "메인반찬",
-                           1: "국∙찌개",
-                           2: "밑반찬"]
-        let titleList = [0: "한그릇 뚝딱 메인 요리",
-                         1: "김이 모락모락 국∙찌개",
-                         2: "언제 먹어도 든든한 밑반찬"]
-        header.keywordLabel.text = keywordList[section]
-        header.sectionTitle.text = titleList[section]
+        header.keywordLabel.text = dataManager.keywordList[section]
+        header.sectionTitle.text = dataManager.titleList[section]
         return header
     }
     
