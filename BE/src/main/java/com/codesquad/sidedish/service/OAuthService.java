@@ -3,6 +3,7 @@ package com.codesquad.sidedish.service;
 import com.codesquad.sidedish.entity.OAuthGithubToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,12 @@ public class OAuthService {
 
     private static final Logger log = LoggerFactory.getLogger(OAuthService.class);
 
-    private final String CLIENTID = "71186054709e9adda0f9";
-    private final String CLIENTSECRET = "c0195e8d988b81aee4d7565da58941dd8e8fcc5a";
+    @Value("${oauth.client.id}")
+    private String CLIENTID;
+
+    @Value("${oauth.client.secret}")
+    private String CLIENTSECRET;
+
     private final String URL = "https://github.com/login/oauth/access_token";
 
     public OAuthGithubToken getAccessToken(String code) {
