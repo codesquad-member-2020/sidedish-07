@@ -45,4 +45,9 @@ public class OAuthService {
         return (OAuthGithubToken) response.getBody();
     }
 
+    public String getUserEmailFromOAuthToken(String code) {
+
+        return null;
+    }
+
 }
