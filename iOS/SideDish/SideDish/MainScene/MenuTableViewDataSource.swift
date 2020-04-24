@@ -28,8 +28,7 @@ class MenuTableViewDataSource: NSObject, UITableViewDataSource {
         let sideDish = dataManager.sideDishes(at: indexPath.section)[indexPath.row]
         guard cell.sideDish != sideDish else { return cell }
         cell.sideDish = sideDish
-        NetworkManager.httpRequest(url: sideDish.image, method: .GET) { (data, response, error) in
-            guard let data = data else { return }
+        SideDishUseCase.loadImage(url: sideDish.image) { data in
             DispatchQueue.main.async {
                 cell.menuImage.image = UIImage(data: data)
             }

@@ -43,4 +43,15 @@ struct SideDishUseCase {
             completed(category.section, list ?? [])
         })
     }
+    
+    static func loadImage(url: String, completed: @escaping (Data) -> ()) {
+        NetworkManager.httpRequest(url: url, method: .GET) { (data, response, error) in
+            guard let data = data else {
+                NotificationCenter.default.post(name: loadFailed, object: nil)
+                return
+            }
+            completed(data)
+        }
+    }
 }
+
