@@ -11,6 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.Cookie;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpServletRequest;
+>>>>>>> [#33] Feat: Access Token을 통해 githubEmail 받는 기능 구현
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
 import java.io.IOException;
@@ -31,6 +35,7 @@ public class LoginController {
     public String OauthTest(@PathParam("code") String code, HttpServletResponse response) throws IOException {
         log.debug("{}", code);
         OAuthGithubToken oAuthGithubToken = oauthService.getAccessToken(code);
+
         log.debug("{}", oAuthGithubToken.getAuthorization());
         String accessToken = oAuthGithubToken.getAuthorization();
 
@@ -51,5 +56,4 @@ public class LoginController {
         response.addCookie(new Cookie("Authorization", jwt));
         return "redirect:/";
     }
-
 }
