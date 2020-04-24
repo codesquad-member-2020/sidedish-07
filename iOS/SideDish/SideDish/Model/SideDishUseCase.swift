@@ -24,6 +24,7 @@ struct SideDishUseCase {
         }
     }
     
+    static let loadFailed = NSNotification.Name.init("loadFailed")
     static let serverUrl = "http://15.165.190.16/products/"
     
     static func loadAll(completed: @escaping (Int, [SideDish]) -> ()) {
@@ -34,7 +35,10 @@ struct SideDishUseCase {
     
     static func loadList(category: Category, completed: @escaping (Int, [SideDish]) -> ()) {
         NetworkManager.httpRequest(url: serverUrl + category.rawValue, method: .GET, completionHandler: { (data, _, error) in
-            guard let data = data else { return }
+            guard let data = data else {
+                NotificationCenter.default.post(name: loadFailed, object: nil)
+                return
+            }
             let list = try? JSONDecoder().decode(SideDishData.self, from: data).content
             completed(category.section, list ?? [])
         })

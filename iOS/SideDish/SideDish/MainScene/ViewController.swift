@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     }
     
     private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(loadFailed), name: SideDishUseCase.loadFailed, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadSection(_:)), name: DataManager.reloadSection, object: nil)
     }
     
@@ -37,6 +38,15 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 self.dataManager.updateData(section: section, data: list)
             }
+        }
+    }
+    
+    @objc private func loadFailed() {
+        let alert = UIAlertController(title: "데이터 로드 실패!", message: "네트워크 연결을 확인해주세요!", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
         }
     }
     
