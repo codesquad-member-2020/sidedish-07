@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    private var dataManager = DataManager()
     private var menuTableViewDataSource = MenuTableViewDataSource()
     
     @IBOutlet weak var menuTableView: UITableView!
@@ -23,19 +22,23 @@ class ViewController: UIViewController {
         menuTableView.delegate = self
         menuTableView.dataSource = menuTableViewDataSource
         menuTableView.register(MenuSectionHeader.self, forHeaderFooterViewReuseIdentifier: MenuSectionHeader.reuseIdentifier)
-        addObservers()
-        dataManager.loadData()
-    }
-    
-    private func addObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(_:)), name: DataManager.dataDidLoad, object: nil)
-    }
-    
-    @objc func reloadTableView(_ notification: NSNotification) {
-        guard let section = notification.userInfo?[DataManager.dataDidLoad] as? Int else { return }
-        DispatchQueue.main.async {
-            self.menuTableViewDataSource.sectionDataList[section] = self.dataManager.sectionDataList[section]
-            self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
+        SideDishUseCase.loadList(category: .main) { (section, list) in
+            DispatchQueue.main.async {
+                self.menuTableViewDataSource.sectionDataList[section] = list
+                self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
+            }
+        }
+        SideDishUseCase.loadList(category: .side) { (section, list) in
+            DispatchQueue.main.async {
+                self.menuTableViewDataSource.sectionDataList[section] = list
+                self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
+            }
+        }
+        SideDishUseCase.loadList(category: .soup) { (section, list) in
+            DispatchQueue.main.async {
+                self.menuTableViewDataSource.sectionDataList[section] = list
+                self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
+            }
         }
     }
 }
