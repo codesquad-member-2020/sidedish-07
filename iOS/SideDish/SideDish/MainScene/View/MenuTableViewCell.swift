@@ -30,7 +30,7 @@ class MenuTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -44,6 +44,10 @@ class MenuTableViewCell: UITableViewCell {
         titleLabel.text = sideDish.title
         descriptionLabel.text = sideDish.description
         priceLabel.setPrice(sale: sideDish.salePrice, normal: sideDish.normalPrice)
+        eventBadgeStackView.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
+        
         if let badges = sideDish.badges {
             badges.forEach {
                 let badge = KeywordLabel()

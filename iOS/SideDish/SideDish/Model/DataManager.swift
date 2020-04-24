@@ -42,7 +42,7 @@ class DataManager {
             do {
                 let decodedData = try decoder.decode(SideDishData.self, from: data)
                 self.sectionDataList[category.section] = decodedData.content
-                NotificationCenter.default.post(name: DataManager.dataDidLoad, object: nil)
+                NotificationCenter.default.post(name: DataManager.dataDidLoad, object: nil, userInfo: [DataManager.dataDidLoad: category.section])
             } catch {
                 
             }
