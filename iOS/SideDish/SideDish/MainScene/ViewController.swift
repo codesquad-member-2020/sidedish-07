@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     private var dataManager = DataManager()
-    private var menuTableViewDataSource: MenuTableViewDataSource?
+    private var menuTableViewDataSource = MenuTableViewDataSource()
     
     @IBOutlet weak var menuTableView: UITableView!
         
@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        menuTableViewDataSource = MenuTableViewDataSource(dataManager: dataManager)
         menuTableView.delegate = self
         menuTableView.dataSource = menuTableViewDataSource
         menuTableView.register(MenuSectionHeader.self, forHeaderFooterViewReuseIdentifier: MenuSectionHeader.reuseIdentifier)
@@ -35,6 +34,7 @@ class ViewController: UIViewController {
     @objc func reloadTableView(_ notification: NSNotification) {
         guard let section = notification.userInfo?[DataManager.dataDidLoad] as? Int else { return }
         DispatchQueue.main.async {
+            self.menuTableViewDataSource.sectionDataList[section] = self.dataManager.sectionDataList[section]
             self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
         }
     }
