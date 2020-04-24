@@ -9,10 +9,14 @@
 import UIKit
 
 class MenuTableViewDataSource: NSObject, UITableViewDataSource {
-    var sectionDataList = [Int: [SideDish]]()
+    private let dataManager: DataManager
+    
+    init(dataManager: DataManager) {
+        self.dataManager = dataManager
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sectionDataList[section]?.count ?? 0
+        return dataManager.sideDishes(at: section).count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -20,9 +24,8 @@ class MenuTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell,
-            let data = sectionDataList[indexPath.section] else { return UITableViewCell() }
-        let sideDish = data[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell else { return UITableViewCell() }
+        let sideDish = dataManager.sideDishes(at: indexPath.section)[indexPath.row]
         guard cell.sideDish != sideDish else { return cell }
         cell.sideDish = sideDish
         NetworkManager.httpRequest(url: sideDish.image, method: .GET) { (data, response, error) in

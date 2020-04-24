@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-    private var menuTableViewDataSource = MenuTableViewDataSource()
+    private var dataManager = DataManager()
+    private var menuTableViewDataSource: MenuTableViewDataSource?
     
     @IBOutlet weak var menuTableView: UITableView!
         
@@ -19,27 +20,39 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        menuTableViewDataSource = MenuTableViewDataSource(dataManager: dataManager)
         menuTableView.delegate = self
         menuTableView.dataSource = menuTableViewDataSource
         menuTableView.register(MenuSectionHeader.self, forHeaderFooterViewReuseIdentifier: MenuSectionHeader.reuseIdentifier)
+        addObservers()
+        configureUseCase()
+    }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadSection(_:)), name: DataManager.reloadSection, object: nil)
+    }
+    
+    private func configureUseCase() {
         SideDishUseCase.loadList(category: .main) { (section, list) in
             DispatchQueue.main.async {
-                self.menuTableViewDataSource.sectionDataList[section] = list
-                self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
+                self.dataManager.updateData(section: section, data: list)
             }
         }
         SideDishUseCase.loadList(category: .side) { (section, list) in
             DispatchQueue.main.async {
-                self.menuTableViewDataSource.sectionDataList[section] = list
-                self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
+                self.dataManager.updateData(section: section, data: list)
             }
         }
         SideDishUseCase.loadList(category: .soup) { (section, list) in
             DispatchQueue.main.async {
-                self.menuTableViewDataSource.sectionDataList[section] = list
-                self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
+                self.dataManager.updateData(section: section, data: list)
             }
         }
+    }
+    
+    @objc func reloadSection(_ notification: NSNotification) {
+        guard let section = notification.userInfo?[DataManager.reloadSection] as? Int else { return }
+        self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
     }
 }
 

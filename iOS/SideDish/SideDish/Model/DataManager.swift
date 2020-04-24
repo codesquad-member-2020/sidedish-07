@@ -9,5 +9,16 @@
 import Foundation
 
 class DataManager {
-    private(set) var sectionDataList = [Int: [SideDish]]()
+    static let reloadSection = NSNotification.Name.init("reloadSection")
+    
+    private var sectionDataList = [Int: [SideDish]]()
+    
+    func updateData(section: Int, data: [SideDish]) {
+        sectionDataList[section] = data
+        NotificationCenter.default.post(name: DataManager.reloadSection, object: nil, userInfo: [DataManager.reloadSection: section])
+    }
+    
+    func sideDishes(at section: Int) -> [SideDish] {
+        return sectionDataList[section] ?? []
+    }
 }
