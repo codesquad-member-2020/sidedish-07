@@ -18,6 +18,7 @@ class DataManager {
                      1: "김이 모락모락 국∙찌개",
                      2: "언제 먹어도 든든한 밑반찬"]
     private var sectionDataList = [Int: [SideDish]]()
+    private(set) var sectionCount = 3
     
     func updateData(section: Int, data: [SideDish]) {
         sectionDataList[section] = data
