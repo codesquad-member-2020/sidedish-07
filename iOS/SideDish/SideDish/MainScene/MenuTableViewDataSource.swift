@@ -9,25 +9,19 @@
 import UIKit
 
 class MenuTableViewDataSource: NSObject, UITableViewDataSource {
-    private let dataManager: DataManager
-    
-    init(dataManager: DataManager) {
-        self.dataManager = dataManager
-    }
+    var sectionDataList = [Int: [SideDish]]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let data = dataManager.sectionDataList[section] else { return 8 }
-        return data.count
+        return sectionDataList[section]?.count ?? 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-//        return dataManager.sectionDataList.count
         return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell,
-            let data = dataManager.sectionDataList[indexPath.section] else { return UITableViewCell() }
+            let data = sectionDataList[indexPath.section] else { return UITableViewCell() }
         let sideDish = data[indexPath.row]
         guard cell.sideDish != sideDish else { return cell }
         cell.sideDish = sideDish
