@@ -26,6 +26,12 @@ struct SideDishUseCase {
     
     static let serverUrl = "http://15.165.190.16/products/"
     
+    static func loadAll(completed: @escaping (Int, [SideDish]) -> ()) {
+        loadList(category: .main, completed: completed)
+        loadList(category: .soup, completed: completed)
+        loadList(category: .side, completed: completed)
+    }
+    
     static func loadList(category: Category, completed: @escaping (Int, [SideDish]) -> ()) {
         try? NetworkManager.httpRequest(url: serverUrl + category.rawValue, method: .GET, completionHandler: { (data, _, error) in
             guard let data = data else { return }

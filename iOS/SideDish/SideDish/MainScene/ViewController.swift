@@ -33,17 +33,7 @@ class ViewController: UIViewController {
     }
     
     private func configureUseCase() {
-        SideDishUseCase.loadList(category: .main) { (section, list) in
-            DispatchQueue.main.async {
-                self.dataManager.updateData(section: section, data: list)
-            }
-        }
-        SideDishUseCase.loadList(category: .side) { (section, list) in
-            DispatchQueue.main.async {
-                self.dataManager.updateData(section: section, data: list)
-            }
-        }
-        SideDishUseCase.loadList(category: .soup) { (section, list) in
+        SideDishUseCase.loadAll { (section, list) in
             DispatchQueue.main.async {
                 self.dataManager.updateData(section: section, data: list)
             }
