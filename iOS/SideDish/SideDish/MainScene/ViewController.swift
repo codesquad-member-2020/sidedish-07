@@ -24,15 +24,18 @@ class ViewController: UIViewController {
         menuTableView.delegate = self
         menuTableView.dataSource = menuTableViewDataSource
         menuTableView.register(MenuSectionHeader.self, forHeaderFooterViewReuseIdentifier: MenuSectionHeader.reuseIdentifier)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: DataManager.dataDidLoad, object: nil)
-        
+        addObservers()
         dataManager.loadData()
     }
     
-    @objc func reloadTableView() {
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(_:)), name: DataManager.dataDidLoad, object: nil)
+    }
+    
+    @objc func reloadTableView(_ notification: NSNotification) {
+        guard let section = notification.userInfo?[DataManager.dataDidLoad] as? Int else { return }
         DispatchQueue.main.async {
-            self.menuTableView.reloadData()
+            self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
         }
     }
 }
