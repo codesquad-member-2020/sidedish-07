@@ -26,8 +26,8 @@ class MenuTableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell else { return UITableViewCell() }
         let sideDish = dataManager[indexPath.section][indexPath.row]
-        guard cell.sideDish != sideDish else { return cell }
-        cell.sideDish = sideDish
+        guard cell.hashCode != sideDish.hash else { return cell }
+        cell.updateCell(data: sideDish)
         SideDishUseCase.loadImage(url: sideDish.image) { data in
             DispatchQueue.main.async {
                 cell.menuImage.image = UIImage(data: data)
