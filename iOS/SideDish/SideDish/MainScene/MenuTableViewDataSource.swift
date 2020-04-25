@@ -16,7 +16,7 @@ class MenuTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataManager.sideDishes(at: section).count
+        return dataManager[section].count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -25,7 +25,7 @@ class MenuTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell else { return UITableViewCell() }
-        let sideDish = dataManager.sideDishes(at: indexPath.section)[indexPath.row]
+        let sideDish = dataManager[indexPath.section][indexPath.row]
         guard cell.sideDish != sideDish else { return cell }
         cell.sideDish = sideDish
         SideDishUseCase.loadImage(url: sideDish.image) { data in

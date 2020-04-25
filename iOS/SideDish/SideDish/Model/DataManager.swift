@@ -24,8 +24,10 @@ class DataManager {
         sectionDataList[section] = data
         NotificationCenter.default.post(name: DataManager.reloadSection, object: nil, userInfo: [DataManager.reloadSection: section])
     }
-    
-    func sideDishes(at section: Int) -> [SideDish] {
+}
+
+extension DataManager {
+    subscript(section: Int) -> [SideDish] {
         return sectionDataList[section] ?? []
     }
 }
