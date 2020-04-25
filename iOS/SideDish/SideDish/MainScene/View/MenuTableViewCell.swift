@@ -11,11 +11,7 @@ import UIKit
 class MenuTableViewCell: UITableViewCell {
     static let reuseIdentifier = "menuCell"
     
-    var sideDish: SideDish? {
-        didSet {
-            updateCell()
-        }
-    }
+    private(set) var hashCode = String()
     
     @IBOutlet weak var menuImage: UIImageView! {
         didSet {
@@ -35,25 +31,24 @@ class MenuTableViewCell: UITableViewCell {
         super.init(coder: coder)
     }
     
-    private func configureMenuImage() {
-        menuImage.layer.cornerRadius = menuImage.frame.width / 2
-    }
-    
-    private func updateCell() {
-        guard let sideDish = sideDish else { return }
-        titleLabel.text = sideDish.title
-        descriptionLabel.text = sideDish.description
-        priceLabel.setPrice(sale: sideDish.salePrice, normal: sideDish.normalPrice)
+    func updateCell(data: SideDish) {
+        hashCode = data.hash
+        titleLabel.text = data.title
+        descriptionLabel.text = data.description
+        priceLabel.setPrice(sale: data.salePrice, normal: data.normalPrice)
         eventBadgeStackView.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
-        
-        if let badges = sideDish.badges {
+        if let badges = data.badges {
             badges.forEach {
                 let badge = KeywordLabel()
                 badge.setKeyword($0)
                 eventBadgeStackView.addArrangedSubview(badge)
             }
         }
+    }
+    
+    private func configureMenuImage() {
+        menuImage.layer.cornerRadius = menuImage.frame.width / 2
     }
 }

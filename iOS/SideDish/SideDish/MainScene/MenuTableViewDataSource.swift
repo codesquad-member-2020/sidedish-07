@@ -9,6 +9,8 @@
 import UIKit
 
 class MenuTableViewDataSource: NSObject, UITableViewDataSource {
+    static let reloadCell = NSNotification.Name.init("reloadCell")
+    
     private let dataManager: DataManager
     
     init(dataManager: DataManager) {
@@ -16,7 +18,7 @@ class MenuTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataManager.sideDishes(at: section).count
+        return dataManager[section].count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -25,12 +27,18 @@ class MenuTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell else { return UITableViewCell() }
-        let sideDish = dataManager.sideDishes(at: indexPath.section)[indexPath.row]
-        guard cell.sideDish != sideDish else { return cell }
-        cell.sideDish = sideDish
-        SideDishUseCase.loadImage(url: sideDish.image) { data in
+        let sideDish = dataManager[indexPath.section][indexPath.row]
+        guard cell.hashCode != sideDish.hash else { return cell }
+        cell.updateCell(data: sideDish)
+        if let image = ImageFileManager.getSavedImage(name: sideDish.hash) {
             DispatchQueue.main.async {
-                cell.menuImage.image = UIImage(data: data)
+                cell.menuImage.image = image
+            }
+        } else {
+            SideDishUseCase.loadImage(url: sideDish.image) { data in
+                guard let image = UIImage(data: data) else { return }
+                ImageFileManager.saveImage(image: image, name: sideDish.hash)
+                NotificationCenter.default.post(name: MenuTableViewDataSource.reloadCell, object: nil, userInfo: [MenuTableViewDataSource.reloadCell: indexPath])
             }
         }
         return cell

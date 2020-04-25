@@ -29,8 +29,9 @@ class ViewController: UIViewController {
     }
     
     private func addObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(loadFailed), name: SideDishUseCase.loadFailed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(errorAlert(_:)), name: SideDishUseCase.loadFailed, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadSection(_:)), name: DataManager.reloadSection, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCell(_:)), name: MenuTableViewDataSource.reloadCell, object: nil)
     }
     
     private func configureUseCase() {
@@ -41,8 +42,10 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc private func loadFailed() {
-        let alert = UIAlertController(title: "데이터 로드 실패!", message: "네트워크 연결을 확인해주세요!", preferredStyle: .alert)
+    @objc private func errorAlert(_ notification: NSNotification) {
+        guard let title = notification.userInfo?["title"] as? String,
+            let message = notification.userInfo?["message"] as? String else { return }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         DispatchQueue.main.async {
@@ -53,6 +56,13 @@ class ViewController: UIViewController {
     @objc private func reloadSection(_ notification: NSNotification) {
         guard let section = notification.userInfo?[DataManager.reloadSection] as? Int else { return }
         self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
+    }
+    
+    @objc private func reloadCell(_ notification: NSNotification) {
+        guard let indexPath = notification.userInfo?[MenuTableViewDataSource.reloadCell] as? IndexPath else { return }
+        DispatchQueue.main.async {
+            self.menuTableView.reloadRows(at: [indexPath], with: .none)
+        }
     }
 }
 

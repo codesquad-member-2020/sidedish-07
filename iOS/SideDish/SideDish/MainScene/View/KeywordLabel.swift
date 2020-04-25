@@ -9,7 +9,12 @@
 import UIKit
 
 class KeywordLabel: UILabel {
+    static var keywordList = [String: UIColor]()
+
     private let padding = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
+    private let colors = [UIColor.systemIndigo,
+                          UIColor.systemPurple,
+                          UIColor.systemOrange]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,12 +34,11 @@ class KeywordLabel: UILabel {
     }
     
     func setKeyword(_ keyword: String) {
-        let keywordList = ["이벤트특가": UIColor.purple,
-                           "론칭특가": UIColor.purple,
-                           "품절": UIColor.black,
-                           "사은품증정": UIColor.orange]
-        layer.borderColor = keywordList[keyword]?.cgColor
-        backgroundColor = keywordList[keyword]
+        if KeywordLabel.keywordList[keyword] == nil {
+            KeywordLabel.keywordList[keyword] = colors[KeywordLabel.keywordList.count]
+        }
+        layer.borderColor = KeywordLabel.keywordList[keyword]?.cgColor
+        backgroundColor = KeywordLabel.keywordList[keyword]
         text = keyword
         textColor = .white
     }
