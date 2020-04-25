@@ -30,14 +30,14 @@ class MenuTableViewDataSource: NSObject, UITableViewDataSource {
         let sideDish = dataManager[indexPath.section][indexPath.row]
         guard cell.hashCode != sideDish.hash else { return cell }
         cell.updateCell(data: sideDish)
-        if let image = ImageFileManager.shared.getSavedImage(name: sideDish.hash) {
+        if let image = ImageFileManager.getSavedImage(name: sideDish.hash) {
             DispatchQueue.main.async {
                 cell.menuImage.image = image
             }
         } else {
             SideDishUseCase.loadImage(url: sideDish.image) { data in
                 guard let image = UIImage(data: data) else { return }
-                ImageFileManager.shared.saveImage(image: image, name: sideDish.hash)
+                ImageFileManager.saveImage(image: image, name: sideDish.hash)
                 NotificationCenter.default.post(name: MenuTableViewDataSource.reloadCell, object: nil, userInfo: [MenuTableViewDataSource.reloadCell: indexPath])
             }
         }
