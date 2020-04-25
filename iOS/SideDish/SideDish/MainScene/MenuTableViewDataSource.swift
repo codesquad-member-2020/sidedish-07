@@ -28,9 +28,18 @@ class MenuTableViewDataSource: NSObject, UITableViewDataSource {
         let sideDish = dataManager[indexPath.section][indexPath.row]
         guard cell.hashCode != sideDish.hash else { return cell }
         cell.updateCell(data: sideDish)
-        SideDishUseCase.loadImage(url: sideDish.image) { data in
+        
+        if let image = ImageFileManager.shared.getSavedImage(name: sideDish.hash) {
             DispatchQueue.main.async {
-                cell.menuImage.image = UIImage(data: data)
+                cell.menuImage.image = image
+            }
+        } else {
+            SideDishUseCase.loadImage(url: sideDish.image) { data in
+                guard let image = UIImage(data: data) else { return }
+                DispatchQueue.main.async {
+                    cell.menuImage.image = image
+                }
+                ImageFileManager.shared.saveImage(image: image, name: sideDish.hash)
             }
         }
         return cell
