@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     private func addObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(errorAlert(_:)), name: SideDishUseCase.loadFailed, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadSection(_:)), name: DataManager.reloadSection, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCell(_:)), name: MenuTableViewDataSource.reloadCell, object: nil)
     }
     
     private func configureUseCase() {
@@ -55,6 +56,13 @@ class ViewController: UIViewController {
     @objc private func reloadSection(_ notification: NSNotification) {
         guard let section = notification.userInfo?[DataManager.reloadSection] as? Int else { return }
         self.menuTableView.reloadSections(IndexSet(integer: section), with: .automatic)
+    }
+    
+    @objc private func reloadCell(_ notification: NSNotification) {
+        guard let indexPath = notification.userInfo?[MenuTableViewDataSource.reloadCell] as? IndexPath else { return }
+        DispatchQueue.main.async {
+            self.menuTableView.reloadRows(at: [indexPath], with: .none)
+        }
     }
 }
 
