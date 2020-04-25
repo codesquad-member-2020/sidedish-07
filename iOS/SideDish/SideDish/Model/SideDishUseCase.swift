@@ -36,7 +36,7 @@ struct SideDishUseCase {
     static func loadList(category: Category, completed: @escaping (Int, [SideDish]) -> ()) {
         NetworkManager.httpRequest(url: serverUrl + category.rawValue, method: .GET, completionHandler: { (data, _, error) in
             guard let data = data else {
-                NotificationCenter.default.post(name: loadFailed, object: nil)
+                NotificationCenter.default.post(name: loadFailed, object: nil, userInfo: ["title":"데이터 로드 실패!","message":"네트워크 연결을 확인해주세요!"])
                 return
             }
             let list = try? JSONDecoder().decode(SideDishData.self, from: data).content
@@ -47,7 +47,7 @@ struct SideDishUseCase {
     static func loadImage(url: String, completed: @escaping (Data) -> ()) {
         NetworkManager.httpRequest(url: url, method: .GET) { (data, response, error) in
             guard let data = data else {
-                NotificationCenter.default.post(name: loadFailed, object: nil)
+                NotificationCenter.default.post(name: loadFailed, object: nil, userInfo: ["title":"이미지 로드 실패!","message":"네트워크 연결을 확인해주세요!"])
                 return
             }
             completed(data)
