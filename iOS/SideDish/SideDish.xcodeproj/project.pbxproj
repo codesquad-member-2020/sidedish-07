@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44129A352454941700A4A6E7 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44129A342454941700A4A6E7 /* ImageFileManager.swift */; };
 		445282FC244EE7BD0077384D /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445282FB244EE7BD0077384D /* MenuTableViewCell.swift */; };
 		44528304244F23ED0077384D /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44528303244F23ED0077384D /* DescriptionViewController.swift */; };
 		4460EE7824533F9700EECE13 /* SideDishUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460EE7724533F9700EECE13 /* SideDishUseCase.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44129A342454941700A4A6E7 /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		445282FB244EE7BD0077384D /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		44528303244F23ED0077384D /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		4460EE7724533F9700EECE13 /* SideDishUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishUseCase.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				44DE3E4824506F9E007C5AA8 /* NetworkManager.swift */,
 				4460EE7724533F9700EECE13 /* SideDishUseCase.swift */,
 				44DE3E4A2451D232007C5AA8 /* DataManager.swift */,
+				44129A342454941700A4A6E7 /* ImageFileManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44DE3E4924506F9E007C5AA8 /* NetworkManager.swift in Sources */,
+				44129A352454941700A4A6E7 /* ImageFileManager.swift in Sources */,
 				44DE3E4B2451D232007C5AA8 /* DataManager.swift in Sources */,
 				44A6212C244DA6F8000EC9D3 /* ViewController.swift in Sources */,
 				44528304244F23ED0077384D /* DescriptionViewController.swift in Sources */,
