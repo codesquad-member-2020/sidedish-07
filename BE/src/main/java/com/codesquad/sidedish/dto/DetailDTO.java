@@ -34,7 +34,12 @@ public class DetailDTO {
     @JsonIgnore
     private List<String> deliveryTypes;
 
-    public DetailDTO(Integer id, String hash, String title, String description, String salePrice, String normalPrice, String point, String deliveryFee, String deliveryInfo, String topImage) {
+    public DetailDTO(Integer id, String hash,
+                     String title, String description,
+                     String salePrice, String normalPrice, String point,
+                     String deliveryFee, String deliveryInfo,
+                     String topImage, List<String> thumbImages, List<String> detailImages,
+                     List<String> deliveryTypes) {
         this.id = id;
         this.hash = hash;
         this.title = title;
@@ -45,6 +50,9 @@ public class DetailDTO {
         this.deliveryFee = deliveryFee;
         this.deliveryInfo = deliveryInfo;
         this.topImage = topImage;
+        this.thumbImages = thumbImages;
+        this.detailImages = detailImages;
+        this.deliveryTypes = deliveryTypes;
     }
 
     public Integer getId() {
