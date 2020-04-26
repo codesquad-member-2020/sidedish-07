@@ -7,7 +7,7 @@ import com.codesquad.sidedish.entity.Menu;
 import com.codesquad.sidedish.response.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +45,7 @@ public class SidedishController {
         try {
             product = productDAO.selectDetailByHash(hash);
             processDeliveryInfo(product);
-        } catch (DataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             return new ResponseEntity<>(new ResponseData(ResponseData.STATUS.ERROR, "존재하지 않는 상품입니다."), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(new ResponseData(ResponseData.STATUS.SUCCESS, product), HttpStatus.OK);
