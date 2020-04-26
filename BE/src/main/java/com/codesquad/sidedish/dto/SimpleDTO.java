@@ -27,7 +27,12 @@ public class SimpleDTO {
 
     private List<String> badges;
 
-    public SimpleDTO(Integer id, String hash, String title, String alt, String description, String salePrice, String normalPrice, String image) {
+    public SimpleDTO(Integer id, String hash,
+                     String title, String alt, String description,
+                     String salePrice, String normalPrice,
+                     String image,
+                     List<String> deliveryTypes,
+                     List<String> badges) {
         this.id = id;
         this.hash = hash;
         this.title = title;
@@ -36,6 +41,8 @@ public class SimpleDTO {
         this.salePrice = salePrice;
         this.normalPrice = normalPrice;
         this.image = image;
+        this.deliveryTypes = deliveryTypes;
+        this.badges = badges;
     }
 
     public Integer getId() {
