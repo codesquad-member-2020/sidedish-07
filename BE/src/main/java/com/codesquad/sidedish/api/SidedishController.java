@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/products")
@@ -52,21 +53,15 @@ public class SidedishController {
     }
 
     private void processDeliveryInfo(DetailDTO product) {
-        boolean isDoubleType = false;
-        StringBuilder deliveryInfo = new StringBuilder();
-        for (String deliveryType : product.getDeliveryTypes()) {
-            if (isDoubleType)
-                deliveryInfo.append(" / ");
-
-            if (deliveryType.equals("새벽배송")) {
-                deliveryInfo.append("서울 경기 새벽배송");
-                isDoubleType = true;
-            }
-            if (deliveryType.equals("전국택배")) {
-                deliveryInfo.append("전국택배 (제주 및 도서산간 불가)");
-                isDoubleType = true;
-            }
-        }
-        product.setDeliveryInfo(deliveryInfo.append(product.getDeliveryInfo()).append(" 수령 가능한 상품입니다.").toString());
+        String deliveryInfo = new StringBuilder(product.getDeliveryTypes().stream()
+                .map((type) -> {
+                    if(type.equals("새벽배송"))
+                        return "서울 경기 새벽배송";
+                    return "전국택배 (제주 및 도서산간 불가)";
+                })
+                .collect(Collectors.joining(" / ")))
+                .append(product.getDeliveryInfo())
+                .append(" 수령 가능한 상품입니다.").toString();
+        product.setDeliveryInfo(deliveryInfo);
     }
 }
