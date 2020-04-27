@@ -10,6 +10,7 @@
 		44129A352454941700A4A6E7 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44129A342454941700A4A6E7 /* ImageFileManager.swift */; };
 		44129A3C245719BC00A4A6E7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44129A3B245719BC00A4A6E7 /* WebViewController.swift */; };
 		44129A3E2457350200A4A6E7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44129A3D2457350200A4A6E7 /* LoginViewController.swift */; };
+		44129A4024573F9B00A4A6E7 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44129A3F24573F9B00A4A6E7 /* LoginButton.swift */; };
 		445282FC244EE7BD0077384D /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445282FB244EE7BD0077384D /* MenuTableViewCell.swift */; };
 		44528304244F23ED0077384D /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44528303244F23ED0077384D /* DescriptionViewController.swift */; };
 		4460EE7824533F9700EECE13 /* SideDishUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460EE7724533F9700EECE13 /* SideDishUseCase.swift */; };
@@ -32,6 +33,7 @@
 		44129A342454941700A4A6E7 /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		44129A3B245719BC00A4A6E7 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		44129A3D2457350200A4A6E7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		44129A3F24573F9B00A4A6E7 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		445282FB244EE7BD0077384D /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		44528303244F23ED0077384D /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		4460EE7724533F9700EECE13 /* SideDishUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishUseCase.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			children = (
 				44129A3B245719BC00A4A6E7 /* WebViewController.swift */,
 				44129A3D2457350200A4A6E7 /* LoginViewController.swift */,
+				44129A3F24573F9B00A4A6E7 /* LoginButton.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				44129A3E2457350200A4A6E7 /* LoginViewController.swift in Sources */,
 				4460EE7824533F9700EECE13 /* SideDishUseCase.swift in Sources */,
 				44A6212A244DA6F8000EC9D3 /* SceneDelegate.swift in Sources */,
+				44129A4024573F9B00A4A6E7 /* LoginButton.swift in Sources */,
 				44DE3E4D2451E0BF007C5AA8 /* MenuTableViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
