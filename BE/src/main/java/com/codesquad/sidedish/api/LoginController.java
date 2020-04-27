@@ -27,13 +27,26 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public String OauthTest(@PathParam("code") String code, HttpServletResponse response) {
+    public ResponseEntity<String> OauthTest(@PathParam("code") String code, HttpServletResponse response) {
         log.debug("{}", code);
         OAuthGithubToken oAuthGithubToken = oauthService.getAccessToken(code);
-        response.setHeader("Authorization", oAuthGithubToken.getAuthorization());
+//        response.setHeader("Authorization", oAuthGithubToken.getAuthorization());
         log.debug("{}", oAuthGithubToken.getAuthorization());
+        String accessToken = oAuthGithubToken.getAuthorization();
+        log.debug("{}", accessToken);
 
-        return "/";
+        ResponseEntity<JsonNode> jsonNode = oauthService.getUserEmailFromOAuthToken(accessToken);
+        JsonNode body = jsonNode.getBody();
+
+        User newUser = null;
+        for (JsonNode child : body) {
+            if(child.get("primary").asText().equals("true")) {
+                newUser = new User(child.get("email").asText());
+            }
+        }
+        log.debug("{}", newUser.getGithubEmail());
+
+        return ResponseEntity.ok("Login Success");
     }
 
     @PostMapping("/users")
