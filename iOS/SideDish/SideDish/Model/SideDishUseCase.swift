@@ -25,7 +25,7 @@ struct SideDishUseCase {
     }
     
     static let loadFailed = NSNotification.Name.init("loadFailed")
-    static let serverUrl = "http://15.165.190.16/products/"
+    static let serverUrl = "http://15.164.63.83:8080/products/"
     
     static func loadAll(completed: @escaping (Int, [SideDish]) -> ()) {
         loadList(category: .main, completed: completed)
