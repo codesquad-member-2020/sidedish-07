@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
-@Component
+//@Component
 public class SidedishApplicationRunner implements ApplicationRunner {
 
     private static final Logger log = LoggerFactory.getLogger(SidedishApplicationRunner.class);
