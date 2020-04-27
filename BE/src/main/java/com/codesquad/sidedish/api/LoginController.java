@@ -30,10 +30,8 @@ public class LoginController {
     public ResponseEntity<String> OauthTest(@PathParam("code") String code, HttpServletResponse response) {
         log.debug("{}", code);
         OAuthGithubToken oAuthGithubToken = oauthService.getAccessToken(code);
-//        response.setHeader("Authorization", oAuthGithubToken.getAuthorization());
         log.debug("{}", oAuthGithubToken.getAuthorization());
         String accessToken = oAuthGithubToken.getAuthorization();
-        log.debug("{}", accessToken);
 
         ResponseEntity<JsonNode> jsonNode = oauthService.getUserEmailFromOAuthToken(accessToken);
         JsonNode body = jsonNode.getBody();
@@ -49,21 +47,4 @@ public class LoginController {
         return ResponseEntity.ok("Login Success");
     }
 
-    @PostMapping("/users")
-    public ResponseEntity<String> signIn(HttpServletResponse response, HttpServletRequest request) {
-        String accessToken = request.getHeader("Authorization");
-        log.debug("{}", accessToken);
-        ResponseEntity<JsonNode> jsonNode = oauthService.getUserEmailFromOAuthToken(accessToken);
-        JsonNode body = jsonNode.getBody();
-
-        User newUser = null;
-        for (JsonNode child : body) {
-            if(child.get("primary").asText().equals("true")) {
-                newUser = new User(child.get("email").asText());
-            }
-        }
-        log.debug("{}", newUser.getGithubEmail());
-
-        return ResponseEntity.ok(newUser.getGithubEmail());
-    }
 }
