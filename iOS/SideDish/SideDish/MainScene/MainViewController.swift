@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  SideDish
 //
 //  Created by TTOzzi on 2020/04/20.
@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
+    static let navigationControllerIdentifier = "main"
+    
     private let dataManager = DataManager()
     private var menuTableViewDataSource: MenuTableViewDataSource?
     
@@ -66,7 +68,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MenuSectionHeader.reuseIdentifier) as? MenuSectionHeader else { return nil }
         header.keywordLabel.text = dataManager.keywordList[section]
