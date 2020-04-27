@@ -117,7 +117,6 @@ const Carousel = (props) => {
         </Slider>
         </CarouselContentWrap>
       </CarouselWrap>
-      {    console.log(soupCarousel[5].badges)}
     </React.Fragment>
   );
 };
