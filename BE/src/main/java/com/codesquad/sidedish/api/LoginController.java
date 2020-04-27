@@ -46,7 +46,7 @@ public class LoginController {
             }
         }
         log.debug("{}", newUser.getGithubEmail());
-
+        
         String jwt = jwtToken.JwtTokenMaker(newUser);
         log.debug("{}", jwt);
 
