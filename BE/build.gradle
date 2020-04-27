@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.6.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id 'war'
 }
 
 group = 'com.codesquad'
@@ -15,6 +16,10 @@ configurations {
 	}
 }
 
+bootWar {
+	archiveFileName = "ROOT.war"
+}
+
 repositories {
 	mavenCentral()
 }
@@ -22,6 +27,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.19'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
