@@ -8,11 +8,16 @@
 
 import WebKit
 
+protocol WebViewControllerDelegate {
+    func loginCompeleted()
+}
+
 class WebViewController: UIViewController {
     static let identifier = "web"
     
     private let loginURL = "https://github.com/login/oauth/authorize?client_id=71186054709e9adda0f9&scope=user:email&redirect_uri=http://15.165.65.200/login"
     private let successResopnse = "http://15.165.65.200/"
+    var delegate: WebViewControllerDelegate?
     
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var webView: WKWebView!
@@ -34,13 +39,13 @@ extension WebViewController: WKNavigationDelegate {
                 decisionHandler(.allow)
                 return
         }
-        guard let mainVC = storyboard?.instantiateViewController(identifier: MainViewController.navigationControllerIdentifier) else { return }
         decisionHandler(.cancel)
         webView.getAuthorization {
             SideDishUseCase.token = $0.value
         }
-        mainVC.modalPresentationStyle = .fullScreen
-        present(mainVC, animated: true, completion: nil)
+        dismiss(animated: true) {
+            self.delegate?.loginCompeleted()
+        }
     }
     
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {

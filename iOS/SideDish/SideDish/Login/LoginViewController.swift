@@ -16,6 +16,27 @@ class LoginViewController: UIViewController {
     @IBAction func nonMemberLoginButtonTabbed(_ sender: Any) {
         guard let mainVC = storyboard?.instantiateViewController(identifier: MainViewController.navigationControllerIdentifier) else { return }
         mainVC.modalPresentationStyle = .fullScreen
-        present(mainVC, animated: true, completion: nil)
+        present(mainVC, animated: true)
+    }
+    
+    @IBAction func loginWithGitHubButtonTabbed(_ sender: Any) {
+        guard let webVC = storyboard?.instantiateViewController(identifier: WebViewController.identifier) as? WebViewController else { return }
+        webVC.delegate = self
+        present(webVC, animated: true, completion: nil)
+    }
+}
+
+extension LoginViewController: WebViewControllerDelegate {
+    func loginCompeleted() {
+        guard let mainVC = storyboard?.instantiateViewController(identifier: MainViewController.navigationControllerIdentifier) else { return }
+        mainVC.modalPresentationStyle = .fullScreen
+        present(mainVC, animated: true) {
+            let alert = UIAlertController(title: "로그인 성공!", message: "환영합니다", preferredStyle: .alert)
+            mainVC.present(alert, animated: true) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    alert.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
     }
 }

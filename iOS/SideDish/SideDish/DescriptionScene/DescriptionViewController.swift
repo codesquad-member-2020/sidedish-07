@@ -73,7 +73,8 @@ class DescriptionViewController: UIViewController {
         if SideDishUseCase.token == nil {
             let alert = UIAlertController(title: "비회원은 주문이 불가능합니다.", message: "로그인이 필요합니다.", preferredStyle: .alert)
             let loginAction = UIAlertAction(title: "로그인", style: .default) { _ in
-                guard let webViewController = self.storyboard?.instantiateViewController(withIdentifier: WebViewController.identifier) else { return }
+                guard let webViewController = self.storyboard?.instantiateViewController(withIdentifier: WebViewController.identifier) as? WebViewController else { return }
+                webViewController.delegate = self
                 self.present(webViewController, animated: true, completion: nil)
             }
             let cancelAction = UIAlertAction(title: "닫기", style: .default, handler: nil)
@@ -83,6 +84,17 @@ class DescriptionViewController: UIViewController {
         } else {
             navigationController?.popViewController(animated: true)
             delegate?.orderSuccessAlert(menuName: selectedDish!, date: Date().currentDate)
+        }
+    }
+}
+
+extension DescriptionViewController: WebViewControllerDelegate {
+    func loginCompeleted() {
+        let alert = UIAlertController(title: "로그인 성공!", message: "환영합니다", preferredStyle: .alert)
+        present(alert, animated: true) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                alert.dismiss(animated: true, completion: nil)
+            }
         }
     }
 }
