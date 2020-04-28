@@ -345,7 +345,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jer-3J-eXU" customClass="LoginButton" customModule="SideDish" customModuleProvider="target">
-                                <rect key="frame" x="100.5" y="743.5" width="213" height="40"/>
+                                <rect key="frame" x="100.5" y="781" width="213" height="40"/>
                                 <color key="backgroundColor" red="0.22445049880000001" green="0.77192187310000004" blue="0.75248271229999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title=" Login with GitHub" image="GitHub-Mark">
@@ -355,13 +355,28 @@
                                     <segue destination="Idc-FB-649" kind="show" id="gQn-G2-syl"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyL-wG-mao" customClass="LoginButton" customModule="SideDish" customModuleProvider="target">
+                                <rect key="frame" x="100.5" y="721" width="213" height="40"/>
+                                <color key="backgroundColor" red="0.22445049880000001" green="0.77192187310000004" blue="0.75248271229999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="비회원으로 구경하기">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="nonMemberLoginButtonTabbed:" destination="K64-ZE-Lda" eventType="touchUpInside" id="Inf-it-PsP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="sfQ-Gc-sLO" firstAttribute="bottom" secondItem="jer-3J-eXU" secondAttribute="bottom" multiplier="1.1" id="5id-fs-5Sa"/>
+                            <constraint firstItem="sfQ-Gc-sLO" firstAttribute="bottom" secondItem="jer-3J-eXU" secondAttribute="bottom" multiplier="1.05" id="5id-fs-5Sa"/>
                             <constraint firstItem="jer-3J-eXU" firstAttribute="centerX" secondItem="sfQ-Gc-sLO" secondAttribute="centerX" id="Ngb-m5-ddQ"/>
+                            <constraint firstItem="cyL-wG-mao" firstAttribute="bottom" secondItem="jer-3J-eXU" secondAttribute="top" constant="-20" id="QPC-2b-p5q"/>
+                            <constraint firstItem="cyL-wG-mao" firstAttribute="width" secondItem="jer-3J-eXU" secondAttribute="width" id="R5j-zs-D9k"/>
                             <constraint firstItem="QmK-ty-sXa" firstAttribute="bottom" secondItem="HuZ-5O-kiG" secondAttribute="bottom" id="XkS-Xk-WO4"/>
+                            <constraint firstItem="cyL-wG-mao" firstAttribute="centerX" secondItem="QmK-ty-sXa" secondAttribute="centerX" id="eP8-56-Ye9"/>
                             <constraint firstItem="QmK-ty-sXa" firstAttribute="trailing" secondItem="HuZ-5O-kiG" secondAttribute="trailing" id="iRu-pG-8mn"/>
                             <constraint firstItem="QmK-ty-sXa" firstAttribute="top" secondItem="HuZ-5O-kiG" secondAttribute="top" id="mHq-qw-ppx"/>
+                            <constraint firstItem="cyL-wG-mao" firstAttribute="height" secondItem="jer-3J-eXU" secondAttribute="height" id="sx3-OI-mN4"/>
                             <constraint firstItem="QmK-ty-sXa" firstAttribute="leading" secondItem="HuZ-5O-kiG" secondAttribute="leading" id="zuG-6O-fYD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sfQ-Gc-sLO"/>
@@ -417,6 +432,7 @@
             <objects>
                 <navigationController storyboardIdentifier="main" automaticallyAdjustsScrollViewInsets="NO" id="aJc-5B-ZAv" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="tbF-Cb-Pfu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rdh-ab-qpd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
