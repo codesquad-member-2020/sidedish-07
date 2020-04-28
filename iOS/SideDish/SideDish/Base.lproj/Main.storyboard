@@ -387,9 +387,14 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="8iD-oV-lvi">
+                                <rect key="frame" x="197" y="394" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="8iD-oV-lvi" firstAttribute="centerX" secondItem="V4A-QW-XLy" secondAttribute="centerX" id="JDz-4K-Vad"/>
+                            <constraint firstItem="8iD-oV-lvi" firstAttribute="centerY" secondItem="V4A-QW-XLy" secondAttribute="centerY" id="M12-pz-mUa"/>
                             <constraint firstItem="V4A-QW-XLy" firstAttribute="bottom" secondItem="4dS-hf-9jb" secondAttribute="bottom" id="UOi-69-ZnR"/>
                             <constraint firstItem="V4A-QW-XLy" firstAttribute="leading" secondItem="4dS-hf-9jb" secondAttribute="leading" id="Y3J-E8-EA7"/>
                             <constraint firstItem="V4A-QW-XLy" firstAttribute="trailing" secondItem="4dS-hf-9jb" secondAttribute="trailing" id="b8a-W4-8KT"/>
@@ -399,6 +404,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Knx-1G-AKD"/>
                     <connections>
+                        <outlet property="indicator" destination="8iD-oV-lvi" id="MTY-aZ-DOf"/>
                         <outlet property="webView" destination="V4A-QW-XLy" id="wbZ-tR-ul8"/>
                     </connections>
                 </viewController>

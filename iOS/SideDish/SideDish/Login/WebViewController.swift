@@ -8,10 +8,11 @@
 
 import WebKit
 
-class WebViewController: UIViewController, WKNavigationDelegate {
+class WebViewController: UIViewController {
     private let loginURL = "https://github.com/login/oauth/authorize?client_id=71186054709e9adda0f9&scope=user:email&redirect_uri=http://15.165.65.200/login"
     private let successResopnse = "http://15.165.65.200/"
     
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var webView: WKWebView!
     
     override func viewDidLoad() {
@@ -22,7 +23,9 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         let request = URLRequest(url: url)
         webView.load(request)
     }
-    
+}
+
+extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url,
             "\(url)" == successResopnse else {
@@ -36,6 +39,16 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         }
         mainVC.modalPresentationStyle = .fullScreen
         present(mainVC, animated: true, completion: nil)
+    }
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        indicator.isHidden = false
+        indicator.startAnimating()
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        indicator.isHidden = true
+        indicator.stopAnimating()
     }
 }
 
