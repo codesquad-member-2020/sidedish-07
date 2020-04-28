@@ -31,12 +31,7 @@ extension LoginViewController: WebViewControllerDelegate {
         guard let mainVC = storyboard?.instantiateViewController(identifier: MainViewController.navigationControllerIdentifier) else { return }
         mainVC.modalPresentationStyle = .fullScreen
         present(mainVC, animated: true) {
-            let alert = UIAlertController(title: "로그인 성공!", message: "환영합니다", preferredStyle: .alert)
-            mainVC.present(alert, animated: true) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    alert.dismiss(animated: true, completion: nil)
-                }
-            }
+            mainVC.shortDelayAlert(title: "로그인 성공!", message: "환영합니다.")
         }
     }
 }

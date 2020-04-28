@@ -90,11 +90,6 @@ class DescriptionViewController: UIViewController {
 
 extension DescriptionViewController: WebViewControllerDelegate {
     func loginCompeleted() {
-        let alert = UIAlertController(title: "로그인 성공!", message: "환영합니다", preferredStyle: .alert)
-        present(alert, animated: true) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                alert.dismiss(animated: true, completion: nil)
-            }
-        }
+        shortDelayAlert(title: "로그인 성공!", message: "환영합니다.")
     }
 }

@@ -17,6 +17,7 @@
 		44528304244F23ED0077384D /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44528303244F23ED0077384D /* DescriptionViewController.swift */; };
 		4460EE7824533F9700EECE13 /* SideDishUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460EE7724533F9700EECE13 /* SideDishUseCase.swift */; };
 		449557122458A32000004935 /* LogInOutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449557112458A32000004935 /* LogInOutButton.swift */; };
+		449557142458A4FF00004935 /* UIViewControllerShortDelayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449557132458A4FF00004935 /* UIViewControllerShortDelayAlert.swift */; };
 		44A62128244DA6F8000EC9D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A62127244DA6F8000EC9D3 /* AppDelegate.swift */; };
 		44A6212A244DA6F8000EC9D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A62129244DA6F8000EC9D3 /* SceneDelegate.swift */; };
 		44A6212C244DA6F8000EC9D3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6212B244DA6F8000EC9D3 /* MainViewController.swift */; };
@@ -47,6 +48,7 @@
 		44528303244F23ED0077384D /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		4460EE7724533F9700EECE13 /* SideDishUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishUseCase.swift; sourceTree = "<group>"; };
 		449557112458A32000004935 /* LogInOutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInOutButton.swift; sourceTree = "<group>"; };
+		449557132458A4FF00004935 /* UIViewControllerShortDelayAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerShortDelayAlert.swift; sourceTree = "<group>"; };
 		44A62124244DA6F8000EC9D3 /* SideDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44A62127244DA6F8000EC9D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44A62129244DA6F8000EC9D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				44E981BF2458536100C4257E /* StringRegex.swift */,
 				44E981C1245853FD00C4257E /* WKWebViewCookies.swift */,
 				44E981C5245888D600C4257E /* DateCurrentDate.swift */,
+				449557132458A4FF00004935 /* UIViewControllerShortDelayAlert.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				44C5AB14244DD68B00011691 /* MenuSectionHeader.swift in Sources */,
 				44DE3E4724506BD1007C5AA8 /* SideDish.swift in Sources */,
 				4460EE7824533F9700EECE13 /* SideDishUseCase.swift in Sources */,
+				449557142458A4FF00004935 /* UIViewControllerShortDelayAlert.swift in Sources */,
 				44A6212A244DA6F8000EC9D3 /* SceneDelegate.swift in Sources */,
 				44129A4024573F9B00A4A6E7 /* LoginButton.swift in Sources */,
 				44E981C02458536100C4257E /* StringRegex.swift in Sources */,

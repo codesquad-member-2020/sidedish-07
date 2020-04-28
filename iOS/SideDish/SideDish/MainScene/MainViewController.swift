@@ -72,13 +72,7 @@ class MainViewController: UIViewController {
         } else {
             SideDishUseCase.token = nil
             logInOutButton.setTitle("LogIn", for: .normal)
-            let alert = UIAlertController(title: "로그아웃!", message: "로그아웃 되었습니다.", preferredStyle: .alert)
-            present(alert, animated: true) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    alert.dismiss(animated: true, completion: nil)
-                }
-            }
-
+            shortDelayAlert(title: "로그아웃!", message: "로그아웃 되었습니다.")
         }
     }
     
@@ -159,12 +153,6 @@ extension MainViewController: PresentingViewController {
 extension MainViewController: WebViewControllerDelegate {
     func loginCompeleted() {
         logInOutButton.setTitle("LogOut", for: .normal)
-        let alert = UIAlertController(title: "로그인 성공!", message: "환영합니다", preferredStyle: .alert)
-        present(alert, animated: true) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                alert.dismiss(animated: true, completion: nil)
-            }
-        }
+        shortDelayAlert(title: "로그인 성공!", message: "환영합니다.")
     }
 }
-
