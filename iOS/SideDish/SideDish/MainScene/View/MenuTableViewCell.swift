@@ -10,9 +10,7 @@ import UIKit
 
 class MenuTableViewCell: UITableViewCell {
     static let reuseIdentifier = "menuCell"
-    
-    private(set) var hashCode = String()
-    
+
     @IBOutlet weak var menuImage: UIImageView! {
         didSet {
             configureMenuImage()
@@ -32,7 +30,6 @@ class MenuTableViewCell: UITableViewCell {
     }
     
     func updateCell(data: SideDish) {
-        hashCode = data.hash
         titleLabel.text = data.title
         descriptionLabel.text = data.description
         priceLabel.setPrice(sale: data.salePrice, normal: data.normalPrice)
