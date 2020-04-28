@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
+import axios from "axios";
 
 const CarouselItem = (props) => {
 
@@ -89,8 +90,20 @@ const CarouselItem = (props) => {
     }
     }
 
+    let [productInfo, setProductInfo] = useState([]);
+
+    useEffect(() => {
+        axios.get(`http://15.165.65.200/products/detail/${props.hash}`).then((response) => {
+          setProductInfo(response.data.content);
+        });
+      }, []);
+
+    const itemClickHandler = ()=> {
+      console.log(productInfo);
+    };
+
     return (
-      <ItemWrap>
+      <ItemWrap onClick={itemClickHandler}>
         <ItemImage src={props.image} />
         <ItemTitle>{props.title}</ItemTitle>
         <ItemDescription>{props.description}</ItemDescription>
