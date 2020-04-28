@@ -10,7 +10,7 @@ http://15.165.65.200
 - `{menu}`에 main, soup, side 중 하나를 포함시켜서 요청해주세요.
   > 예시
 
-    `http://15.165.190.16/products/main`
+    `http://15.165.65.200/products/main`
     
 ### 응답 데이터
 - 정상 응답 
@@ -70,7 +70,7 @@ http://15.165.65.200
 - `{hash}`에 상품 hash 값을 넣어주세요.
   > 예시
 
-    `http://15.165.190.16/products/detail/H72C3`
+    `http://15.165.65.200/products/detail/H72C3`
     
 ### 응답 데이터 
 - 정상 응답 
