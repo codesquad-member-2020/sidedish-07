@@ -9,8 +9,8 @@
 import WebKit
 
 class WebViewController: UIViewController, WKNavigationDelegate {
-    private let loginURL = "https://github.com/login/oauth/authorize?client_id=71186054709e9adda0f9&scope=user:email&redirect_uri=http://15.164.63.83:8080/login"
-    private let successResopnse = "http://15.164.63.83:8080/"
+    private let loginURL = "https://github.com/login/oauth/authorize?client_id=71186054709e9adda0f9&scope=user:email&redirect_uri=http://15.165.65.200/login"
+    private let successResopnse = "http://15.165.65.200/"
     
     @IBOutlet weak var webView: WKWebView!
     
