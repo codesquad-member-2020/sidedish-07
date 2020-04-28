@@ -30,6 +30,7 @@
 		44DE3E4D2451E0BF007C5AA8 /* MenuTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DE3E4C2451E0BF007C5AA8 /* MenuTableViewDataSource.swift */; };
 		44DE3E4F2451E22A007C5AA8 /* PriceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DE3E4E2451E22A007C5AA8 /* PriceLabel.swift */; };
 		44E981C02458536100C4257E /* StringRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E981BF2458536100C4257E /* StringRegex.swift */; };
+		44E981C2245853FD00C4257E /* WKWebViewCookies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E981C1245853FD00C4257E /* WKWebViewCookies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		44DE3E4C2451E0BF007C5AA8 /* MenuTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewDataSource.swift; sourceTree = "<group>"; };
 		44DE3E4E2451E22A007C5AA8 /* PriceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceLabel.swift; sourceTree = "<group>"; };
 		44E981BF2458536100C4257E /* StringRegex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringRegex.swift; sourceTree = "<group>"; };
+		44E981C1245853FD00C4257E /* WKWebViewCookies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewCookies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				44E981BF2458536100C4257E /* StringRegex.swift */,
+				44E981C1245853FD00C4257E /* WKWebViewCookies.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				44A6212A244DA6F8000EC9D3 /* SceneDelegate.swift in Sources */,
 				44129A4024573F9B00A4A6E7 /* LoginButton.swift in Sources */,
 				44E981C02458536100C4257E /* StringRegex.swift in Sources */,
+				44E981C2245853FD00C4257E /* WKWebViewCookies.swift in Sources */,
 				44DE3E4D2451E0BF007C5AA8 /* MenuTableViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
