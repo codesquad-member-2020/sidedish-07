@@ -58,64 +58,42 @@ const Carousel = (props) => {
     border : none;
   `;
     
-    let sidedish = [];
+    // let sidedish = [];
 
-    let [sideCarousel, setSideCarousel] = useState([]);
-    let [mainCarousel, setMainCarousel] = useState([]);
-    let [soupCarousel, setSoupCarousel] = useState([]);
+    // const setData = ()=>{
+    //     switch(props.category){
+    //         case "밑반찬" :
+    //             sidedish = sideCarousel;
+    //             break;
+    //         case "메인반찬" :
+    //             sidedish = mainCarousel;
+    //             break;
+    //         case "국·찌개" :
+    //             sidedish = soupCarousel;
+    //             break;    
+    //     }
+    // }
 
-    useEffect(() => {
-      axios.get("http://15.165.65.200/products/side").then((response) => {
-        setSideCarousel(response.data.content);
-      });
-    }, []);
-
-    useEffect(() => {
-      axios.get("http://15.165.65.200/products/main").then((response) => {
-        setMainCarousel(response.data.content);
-      });
-    }, []);
-
-    useEffect(() => {
-      axios.get("http://15.165.65.200/products/soup").then((response) => {
-        setSoupCarousel(response.data.content);
-
-      });
-    }, []);
-
-    const setData = ()=>{
-        switch(props.category){
-            case "밑반찬" :
-                sidedish = sideCarousel;
-                break;
-            case "메인반찬" :
-                sidedish = mainCarousel;
-                break;
-            case "국·찌개" :
-                sidedish = soupCarousel;
-                break;    
-        }
-    }
-
-    const [modalStyle, setModalStyle] = useState({display : "none"})
+    const [modalStyle, setModalStyle] = useState({display : "none"});
 
       const openModal = ()=> {
         const body = document.querySelector("body");
-        preventScroll(body,true)
-        setModalStyle({})  
+        preventScroll(body,true);
+        setModalStyle({});
     };
+
+ 
 
   return (
     <React.Fragment>
-        {setData()}
       <CarouselWrap>
           <CarouselContentWrap>
         <CarouselCategory>{props.category}</CarouselCategory>
         <CarouselTitle>{props.title}</CarouselTitle>
         <Slider style={{display : "flex", alignItems : "center"}} {...settings}> 
-        {sidedish.map((list) => {
+        {props.data.map((list) => {
         return (
-            <CarouselItemWrap data-hash = {list.hash} onClick = {openModal}>
+            <CarouselItemWrap data-hash={list.hash} onClick = {openModal}>
           <CarouselItem
             hash = {list.hash}
             title = {list.title}
@@ -133,7 +111,7 @@ const Carousel = (props) => {
         </Slider>
         </CarouselContentWrap>
       </CarouselWrap>
-      <div style={modalStyle}><Modal/></div>
+      <div style={modalStyle}><Modal setModalStyle = {setModalStyle}/></div>
     </React.Fragment>
   );
 };

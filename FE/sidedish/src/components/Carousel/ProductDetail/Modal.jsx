@@ -61,17 +61,15 @@ const Modal = (props) => {
 
     `;
 
-    const [modalStyle, setModalStyle] = useState({})
-
     const closeBtnClickHandler = ()=>{
         const body = document.querySelector("body");
-        preventScroll(body,false);
-        setModalStyle({display : "none"})
+        preventScroll(body,false);        
+        props.setModalStyle({display : "none"});
     };
 
     return (
         <>
-        <ProductModal style={modalStyle}>
+        <ProductModal>
             <ProductBackground>
                 <ProductWrap>
                 <ProductImageWrap></ProductImageWrap>
