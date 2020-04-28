@@ -9,8 +9,8 @@
 import WebKit
 
 class WebViewController: UIViewController, WKNavigationDelegate {
-    private let loginURL = "https://github.com/login?client_id=71186054709e9adda0f9&return_to=%2Flogin%2Foauth%2Fauthorize%3Fclient_id%3D71186054709e9adda0f9%26redirect_uri%3Dhttp%253A%252F%252F15.164.63.83%253A8080%252Flogin%252Foauth2%252Fcode%252Fgithub%26scope%3Duser%253Aemail"
-    private let successResopnse = "http://15.164.63.83:8080/login/oauth2/code/"
+    private let loginURL = "https://github.com/login/oauth/authorize?client_id=71186054709e9adda0f9&scope=user:email&redirect_uri=http://15.164.63.83:8080/login"
+    private let successResopnse = "http://15.164.63.83:8080/"
     
     @IBOutlet weak var webView: WKWebView!
     
@@ -24,12 +24,16 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        guard "\(navigationAction.request.url!)".contains(successResopnse) else {
-            decisionHandler(.allow)
-            return
+        guard let url = navigationAction.request.url,
+            "\(url)" == successResopnse else {
+                decisionHandler(.allow)
+                return
         }
         guard let mainVC = storyboard?.instantiateViewController(identifier: MainViewController.navigationControllerIdentifier) else { return }
         decisionHandler(.cancel)
+        webView.getAuthorization {
+            print($0.value)
+        }
         mainVC.modalPresentationStyle = .fullScreen
         present(mainVC, animated: true, completion: nil)
     }
@@ -37,11 +41,26 @@ class WebViewController: UIViewController, WKNavigationDelegate {
 
 
 extension WKWebView {
+    private var dataStore: WKWebsiteDataStore  {
+        return WKWebsiteDataStore.default()
+    }
+    
     func cleanAllCookies() {
-        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+        dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
             records.forEach { record in
-                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                self.dataStore.removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+            }
+        }
+    }
+    
+    func getAuthorization(for domain: String? = nil, completion: @escaping (HTTPCookie)->())  {
+        dataStore.httpCookieStore.getAllCookies { cookies in
+            for cookie in cookies {
+                if cookie.name == "Authorization" {
+                    completion(cookie)
+                }
             }
         }
     }
 }
+
