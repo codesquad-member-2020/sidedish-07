@@ -50,7 +50,7 @@
                                                     <color key="textColor" red="0.22445049880000001" green="0.77192187310000004" blue="0.75248271229999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" ambiguous="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="59M-ZN-2BN">
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" ambiguous="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="59M-ZN-2BN" customClass="BadgeStackView" customModule="SideDish" customModuleProvider="target">
                                                     <rect key="frame" x="142" y="90" width="42" height="50"/>
                                                 </stackView>
                                             </subviews>

@@ -10,6 +10,7 @@
 		44129A352454941700A4A6E7 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44129A342454941700A4A6E7 /* ImageFileManager.swift */; };
 		44129A3C245719BC00A4A6E7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44129A3B245719BC00A4A6E7 /* WebViewController.swift */; };
 		44129A4024573F9B00A4A6E7 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44129A3F24573F9B00A4A6E7 /* LoginButton.swift */; };
+		4449274F2458016D00B8F1D5 /* BadgeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4449274E2458016D00B8F1D5 /* BadgeStackView.swift */; };
 		445282FC244EE7BD0077384D /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445282FB244EE7BD0077384D /* MenuTableViewCell.swift */; };
 		44528304244F23ED0077384D /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44528303244F23ED0077384D /* DescriptionViewController.swift */; };
 		4460EE7824533F9700EECE13 /* SideDishUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460EE7724533F9700EECE13 /* SideDishUseCase.swift */; };
@@ -32,6 +33,7 @@
 		44129A342454941700A4A6E7 /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		44129A3B245719BC00A4A6E7 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		44129A3F24573F9B00A4A6E7 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		4449274E2458016D00B8F1D5 /* BadgeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeStackView.swift; sourceTree = "<group>"; };
 		445282FB244EE7BD0077384D /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		44528303244F23ED0077384D /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		4460EE7724533F9700EECE13 /* SideDishUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideDishUseCase.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			children = (
 				44C5AB13244DD68B00011691 /* MenuSectionHeader.swift */,
 				445282FB244EE7BD0077384D /* MenuTableViewCell.swift */,
+				4449274E2458016D00B8F1D5 /* BadgeStackView.swift */,
 				44DE3E4E2451E22A007C5AA8 /* PriceLabel.swift */,
 				44C5AB0F244DD63A00011691 /* KeywordLabel.swift */,
 			);
@@ -235,6 +238,7 @@
 				445282FC244EE7BD0077384D /* MenuTableViewCell.swift in Sources */,
 				44DE3E4F2451E22A007C5AA8 /* PriceLabel.swift in Sources */,
 				44C5AB10244DD63A00011691 /* KeywordLabel.swift in Sources */,
+				4449274F2458016D00B8F1D5 /* BadgeStackView.swift in Sources */,
 				44C5AB14244DD68B00011691 /* MenuSectionHeader.swift in Sources */,
 				44DE3E4724506BD1007C5AA8 /* SideDish.swift in Sources */,
 				4460EE7824533F9700EECE13 /* SideDishUseCase.swift in Sources */,
