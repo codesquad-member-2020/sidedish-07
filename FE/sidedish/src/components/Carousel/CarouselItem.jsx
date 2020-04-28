@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 const CarouselItem = (props) => {
 
     const ItemWrap = styled.div`
-        width : 300px;
+        width : 280px;
         display : flex;
         flex-direction : column;
         justify-content : center;
@@ -21,10 +21,9 @@ const CarouselItem = (props) => {
     const ItemHover = styled.div``;
 
     const ItemTitle = styled.div`
-        width : 250px;
+        width : 230px;
         height : 35px;
-        /* line-height : 30px; */
-        font-size : 18px;
+        font-size : 17px;
         font-weight : bold;
         color : black;
         margin-top : 25px;
@@ -33,11 +32,9 @@ const CarouselItem = (props) => {
     const ItemDescription = styled.div`
         width : 220px;
         height : 30px;
-        color : grey;
-        font-size : 15px;
+        color : #6E6E6E;
+        font-size : 13px;
         margin-top : 10px;
-        font-weight : bold;
-
     `;
 
     const ItemPrice = styled.div`
@@ -57,7 +54,7 @@ const CarouselItem = (props) => {
     `;
 
     const Price = styled.span`
-        font-size : 27px;
+        font-size : 25px;
         color : #18C2BD;
         font-weight : bold;
 
@@ -73,10 +70,9 @@ const CarouselItem = (props) => {
         font-size : 12px;
         color : white;
         font-weight  : bold;
-        background : #cc81e2;
-        margin-top : 10px;
+        background : #C6A8A5;
         box-sizing : border-box;
-        padding : 7px;
+        padding : 5px;
         margin-left : 5px;
     `;
 

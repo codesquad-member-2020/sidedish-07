@@ -11,6 +11,7 @@ import { findByLabelText } from "@testing-library/react";
 
 
 const Carousel = (props) => {
+
   const settings = {
     dots: false,
     infinite: true,
@@ -25,11 +26,11 @@ const Carousel = (props) => {
     width : 100%;
     display : flex;
     justify-content : center;
-    margin : 15px;
+    margin : 30px;
   `;
 
   const CarouselContentWrap = styled.div`
-    width : 1300px;
+    width : 1200px;
     display : flex;
     justify-content : center;
     flex-direction : column;
@@ -40,16 +41,14 @@ const Carousel = (props) => {
 
   const CarouselCategory = styled.div`
     color : grey;
-    font-size : 20px;
-    margin : 10px 10px 20px 10px;
-    font-weight : bold;
+    font-size : 18px;
+    margin : 10px;
   `;
 
   const CarouselTitle = styled.div`
     color : #424242;
-    font-size : 25px;
+    font-size : 30px;
     margin-bottom : 45px;
-    font-weight : bold;
   `;
     
     let sidedish = [];
