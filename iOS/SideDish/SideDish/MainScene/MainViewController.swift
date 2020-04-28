@@ -13,12 +13,25 @@ class MainViewController: UIViewController {
     
     private let dataManager = DataManager()
     private var menuTableViewDataSource: MenuTableViewDataSource?
+    lazy var logInOutButton: LogInOutButton = {
+        let button = LogInOutButton(frame: .zero)
+        button.addTarget(self, action: #selector(logInOutButtonTabbed(_:)), for: .touchUpInside)
+        return button
+    }()
     
     @IBOutlet weak var menuTableView: UITableView!
         
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let view = UIApplication.shared.windows.filter({$0.isKeyWindow}).first {
+            view.addSubview(logInOutButton)
+            setupButton()
+        }
     }
     
     override func viewDidLoad() {
@@ -28,6 +41,45 @@ class MainViewController: UIViewController {
         menuTableView.register(MenuSectionHeader.self, forHeaderFooterViewReuseIdentifier: MenuSectionHeader.reuseIdentifier)
         addObservers()
         configureUseCase()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if UIApplication.shared.windows.filter({$0.isKeyWindow}).first != nil {
+            logInOutButton.removeFromSuperview()
+        }
+    }
+    
+    func setupButton() {
+        if SideDishUseCase.token == nil {
+            logInOutButton.setTitle("LogIn", for: .normal)
+        } else {
+            logInOutButton.setTitle("LogOut", for: .normal)
+        }
+        NSLayoutConstraint.activate([
+            logInOutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            logInOutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            logInOutButton.heightAnchor.constraint(equalToConstant: 40),
+            logInOutButton.widthAnchor.constraint(equalToConstant: 80)
+            ])
+    }
+
+    @objc func logInOutButtonTabbed(_ button: UIButton) {
+        if SideDishUseCase.token == nil {
+            guard let webViewController = storyboard?.instantiateViewController(withIdentifier: WebViewController.identifier) as? WebViewController else { return }
+            webViewController.delegate = self
+            present(webViewController, animated: true, completion: nil)
+        } else {
+            SideDishUseCase.token = nil
+            logInOutButton.setTitle("LogIn", for: .normal)
+            let alert = UIAlertController(title: "로그아웃!", message: "로그아웃 되었습니다.", preferredStyle: .alert)
+            present(alert, animated: true) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    alert.dismiss(animated: true, completion: nil)
+                }
+            }
+
+        }
     }
     
     private func addObservers() {
@@ -103,3 +155,16 @@ extension MainViewController: PresentingViewController {
         present(alert, animated: true)
     }
 }
+
+extension MainViewController: WebViewControllerDelegate {
+    func loginCompeleted() {
+        logInOutButton.setTitle("LogOut", for: .normal)
+        let alert = UIAlertController(title: "로그인 성공!", message: "환영합니다", preferredStyle: .alert)
+        present(alert, animated: true) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                alert.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+}
+
