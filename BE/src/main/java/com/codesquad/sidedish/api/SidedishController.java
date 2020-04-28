@@ -4,18 +4,22 @@ import com.codesquad.sidedish.dao.ProductDAO;
 import com.codesquad.sidedish.dto.DetailDTO;
 import com.codesquad.sidedish.dto.SimpleDTO;
 import com.codesquad.sidedish.entity.Menu;
+import com.codesquad.sidedish.repository.UserRepository;
 import com.codesquad.sidedish.response.ResponseData;
+import com.codesquad.sidedish.security.JwtToken;
+import io.jsonwebtoken.JwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.expression.ExpressionException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -24,9 +28,11 @@ public class SidedishController {
 
     private static final Logger log = LoggerFactory.getLogger(SidedishController.class);
     private ProductDAO productDAO;
+    private UserRepository userRepository;
 
-    public SidedishController(ProductDAO productDAO) {
+    public SidedishController(ProductDAO productDAO, UserRepository userRepository) {
         this.productDAO = productDAO;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/{menu}")
@@ -52,6 +58,23 @@ public class SidedishController {
         return new ResponseEntity<>(new ResponseData(ResponseData.STATUS.SUCCESS, product), HttpStatus.OK);
     }
 
+    @PostMapping("/detail/{hash}/order")
+    public ResponseEntity<ResponseData> order(@PathVariable String hash, HttpServletRequest request) {
+        if (request.getCookies() == null)
+            throw new SecurityException("No Any Cookies");
+
+        String token = null;
+        try {
+            token = getToken(request).orElseThrow(() -> new SecurityException("No Authorization Cookie"));
+        } catch (ExpressionException | JwtException e) {
+            throw new SecurityException("Invalid Jwt token");
+        }
+        if (userRepository.countByGithubEmail(token) > 0)
+            return new ResponseEntity<>(new ResponseData(ResponseData.STATUS.SUCCESS, "Order Success"), HttpStatus.OK);
+
+        throw new SecurityException("Not Logged in User");
+    }
+
     private void processDeliveryInfo(DetailDTO product) {
         String deliveryInfo = new StringBuilder(product.getDeliveryTypes().stream()
                 .map((type) -> {
@@ -63,5 +86,20 @@ public class SidedishController {
                 .append(product.getDeliveryInfo())
                 .append(" 수령 가능한 상품입니다.").toString();
         product.setDeliveryInfo(deliveryInfo);
+    }
+
+    private Optional<String> getToken(HttpServletRequest request) {
+        for (Cookie cookie : request.getCookies()) {
+            if (cookie.getName().equals("Authorization")) {
+                return Optional.of(JwtToken.validateToken(cookie.getValue()));
+            }
+        }
+        return Optional.empty();
+    }
+
+    @ExceptionHandler(SecurityException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ResponseData handleSecurityException(SecurityException e) {
+        return new ResponseData(ResponseData.STATUS.ERROR, e.getMessage());
     }
 }
