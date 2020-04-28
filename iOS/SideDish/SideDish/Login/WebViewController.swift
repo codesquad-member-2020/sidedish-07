@@ -25,7 +25,6 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
-        webView.cleanAllCookies()
         guard let url = URL(string: loginURL) else { return }
         let request = URLRequest(url: url)
         webView.load(request)
@@ -45,6 +44,7 @@ extension WebViewController: WKNavigationDelegate {
         }
         dismiss(animated: true) {
             self.delegate?.loginCompeleted()
+            self.webView.cleanAllCookies()
         }
     }
     
