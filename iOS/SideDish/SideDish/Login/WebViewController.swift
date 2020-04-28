@@ -9,6 +9,8 @@
 import WebKit
 
 class WebViewController: UIViewController {
+    static let identifier = "web"
+    
     private let loginURL = "https://github.com/login/oauth/authorize?client_id=71186054709e9adda0f9&scope=user:email&redirect_uri=http://15.165.65.200/login"
     private let successResopnse = "http://15.165.65.200/"
     
@@ -35,7 +37,7 @@ extension WebViewController: WKNavigationDelegate {
         guard let mainVC = storyboard?.instantiateViewController(identifier: MainViewController.navigationControllerIdentifier) else { return }
         decisionHandler(.cancel)
         webView.getAuthorization {
-            print($0.value)
+            SideDishUseCase.token = $0.value
         }
         mainVC.modalPresentationStyle = .fullScreen
         present(mainVC, animated: true, completion: nil)

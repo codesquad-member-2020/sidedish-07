@@ -90,6 +90,16 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let descriptionViewController = storyboard?.instantiateViewController(withIdentifier: DescriptionViewController.identifier) as? DescriptionViewController else { return }
         descriptionViewController.updateData(hash: dataManager[indexPath.section][indexPath.row].hash)
+        descriptionViewController.delegate = self
         navigationController?.pushViewController(descriptionViewController, animated: true)
+    }
+}
+
+extension MainViewController: PresentingViewController {
+    func orderSuccessAlert() {
+        let alert = UIAlertController(title: "주문 성공!", message: "감사합니다", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
 }

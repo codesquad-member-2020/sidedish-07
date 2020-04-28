@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol PresentingViewController {
+    func orderSuccessAlert()
+}
+
 class DescriptionViewController: UIViewController {
     static let identifier = "description"
+    
+    var delegate: PresentingViewController?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -58,6 +64,23 @@ class DescriptionViewController: UIViewController {
                     self.detailImageStack.addImageSubview(image: image)
                 }
             }
+        }
+    }
+    
+    @IBAction func orderButtonTabbed(_ sender: Any) {
+        if SideDishUseCase.token == nil {
+            let alert = UIAlertController(title: "비회원은 주문이 불가능합니다.", message: "로그인이 필요합니다.", preferredStyle: .alert)
+            let loginAction = UIAlertAction(title: "로그인", style: .default) { _ in
+                guard let webViewController = self.storyboard?.instantiateViewController(withIdentifier: WebViewController.identifier) else { return }
+                self.present(webViewController, animated: true, completion: nil)
+            }
+            let cancelAction = UIAlertAction(title: "닫기", style: .default, handler: nil)
+            alert.addAction(loginAction)
+            alert.addAction(cancelAction)
+            present(alert, animated: true)
+        } else {
+            navigationController?.popViewController(animated: true)
+            delegate?.orderSuccessAlert()
         }
     }
 }
