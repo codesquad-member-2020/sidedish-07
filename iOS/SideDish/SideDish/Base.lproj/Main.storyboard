@@ -124,7 +124,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLe-Jy-HrV">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="525"/>
                                         <subviews>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAq-Wt-zer">
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAq-Wt-zer" customClass="PreviewScrollView" customModule="SideDish" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5I-yQ-aGh">
@@ -152,8 +152,11 @@
                                                 </constraints>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="raO-jg-hbt"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="7Vn-bL-2Lf"/>
+                                                <connections>
+                                                    <outlet property="stackView" destination="0va-J3-dqQ" id="VX0-WV-aes"/>
+                                                </connections>
                                             </scrollView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="elm-GK-Gmu">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="elm-GK-Gmu" customClass="DetailImageStack" customModule="SideDish" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="301" width="414" height="224"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BeW-CC-0ds">
@@ -323,7 +326,6 @@
                         <outlet property="pointLabel" destination="f1B-8A-j9a" id="fJr-jJ-due"/>
                         <outlet property="previewScrollView" destination="hAq-Wt-zer" id="Gq8-U7-c8F"/>
                         <outlet property="priceLabel" destination="83c-5y-WBu" id="ZHs-Ja-C3v"/>
-                        <outlet property="thumbImageStack" destination="0va-J3-dqQ" id="6Ne-z3-PlO"/>
                         <outlet property="titleLabel" destination="UfO-yY-qkz" id="vH9-56-jM8"/>
                     </connections>
                 </viewController>

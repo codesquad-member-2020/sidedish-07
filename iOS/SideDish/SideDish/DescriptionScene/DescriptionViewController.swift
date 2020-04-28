@@ -17,11 +17,8 @@ class DescriptionViewController: UIViewController {
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var deliveryFeeLabel: UILabel!
     @IBOutlet weak var deliveryInfoLabel: UILabel!
-    
-    @IBOutlet weak var previewScrollView: UIScrollView!
-    @IBOutlet weak var thumbImageStack: UIStackView!
-    @IBOutlet weak var detailImageStack: UIStackView!
-    
+    @IBOutlet weak var previewScrollView: PreviewScrollView!
+    @IBOutlet weak var detailImageStack: DetailImageStack!
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -34,49 +31,33 @@ class DescriptionViewController: UIViewController {
     
     func updateData(hash: String) {
         SideDishUseCase.loadDetail(hash: hash) {
-            let detailData = $0
-            DispatchQueue.main.async {
-                self.titleLabel.text = detailData.title
-                self.descriptionLabel.text = detailData.description
-                self.priceLabel.setPrice(sale: detailData.salePrice, normal: detailData.normalPrice)
-                self.deliveryFeeLabel.text = detailData.deliveryFee
-                self.deliveryInfoLabel.text = detailData.deliveryInfo
+            self.updateView(data: $0)
+        }
+    }
+    
+    private func updateView(data: DetailSideDish) {
+        DispatchQueue.main.async {
+            self.titleLabel.text = data.title
+            self.descriptionLabel.text = data.description
+            self.priceLabel.setPrice(sale: data.salePrice, normal: data.normalPrice)
+            self.deliveryFeeLabel.text = data.deliveryFee
+            self.deliveryInfoLabel.text = data.deliveryInfo
+        }
+        data.thumbImages.forEach { imageURL in
+            SideDishUseCase.loadImage(url: imageURL) { imageData in
+                guard let image = UIImage(data: imageData) else { return }
+                DispatchQueue.main.async {
+                    self.previewScrollView.addImageSubview(image: image)
+                }
             }
-            
-            $0.thumbImages.forEach({
-                let url = $0
-                SideDishUseCase.loadImage(url: url) {
-                    guard let image = UIImage(data: $0) else { return }
-                    DispatchQueue.main.async {
-                        let imageView = UIImageView()
-                        imageView.image = image
-                        imageView.translatesAutoresizingMaskIntoConstraints = false
-                        self.thumbImageStack.addArrangedSubview(imageView)
-                        imageView.widthAnchor.constraint(equalTo: self.previewScrollView.frameLayoutGuide.widthAnchor).isActive = true
-                    }
+        }
+        data.detailImages.forEach { imageURL in
+            SideDishUseCase.loadImage(url: imageURL) { imageData in
+                guard let image = UIImage(data: imageData) else { return }
+                DispatchQueue.main.async {
+                    self.detailImageStack.addImageSubview(image: image)
                 }
-            })
-            $0.detailImages.forEach({
-                let url = $0
-                SideDishUseCase.loadImage(url: url) {
-                    guard let image = UIImage(data: $0) else { return }
-                    
-                    DispatchQueue.main.async {
-                        let imageView = UIImageView()
-                        imageView.image = image
-                        imageView.contentMode = .scaleAspectFit
-                        if let imageSize = imageView.image?.size, imageSize.height != 0 {
-                            let aspectRatio = imageSize.width / imageSize.height
-                            let c = NSLayoutConstraint(item: imageView, attribute: .width,
-                                                       relatedBy: .equal,
-                                                       toItem: imageView, attribute: .height,
-                                                       multiplier: aspectRatio, constant: 0)
-                            imageView.addConstraint(c)
-                        }
-                        self.detailImageStack.addArrangedSubview(imageView)
-                    }
-                }
-            })
+            }
         }
     }
 }
