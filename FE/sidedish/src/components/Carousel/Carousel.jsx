@@ -1,4 +1,4 @@
-// import React from 'react';
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,8 +6,9 @@ import Slider from "react-slick";
 import Arrow from "./Arrow";
 import CarouselItem from "./CarouselItem";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
 import { findByLabelText } from "@testing-library/react";
+import Modal from "./ProductDetail/Modal";
+import preventScroll from "../../util/util";
 
 
 const Carousel = (props) => {
@@ -15,6 +16,7 @@ const Carousel = (props) => {
   const settings = {
     dots: false,
     infinite: true,
+    draggable : false,
     speed: 500,
     slidesToScroll: 4,
     slidesToShow: 4,
@@ -23,14 +25,14 @@ const Carousel = (props) => {
   };
 
   const CarouselWrap = styled.div`
-    width : 100%;
+    width : 95%;
     display : flex;
     justify-content : center;
     margin : 30px;
   `;
 
   const CarouselContentWrap = styled.div`
-    width : 1200px;
+    width : 1250px;
     display : flex;
     justify-content : center;
     flex-direction : column;
@@ -50,6 +52,11 @@ const Carousel = (props) => {
     font-size : 30px;
     margin-bottom : 45px;
   `;
+
+  const CarouselItemWrap = styled.div`
+    outline : none;
+    border : none;
+  `;
     
     let sidedish = [];
 
@@ -58,19 +65,19 @@ const Carousel = (props) => {
     let [soupCarousel, setSoupCarousel] = useState([]);
 
     useEffect(() => {
-      axios.get("http://15.164.63.83:8080/products/side").then((response) => {
+      axios.get("http://15.165.65.200/products/side").then((response) => {
         setSideCarousel(response.data.content);
       });
     }, []);
 
     useEffect(() => {
-      axios.get("http://15.164.63.83:8080/products/main").then((response) => {
+      axios.get("http://15.165.65.200/products/main").then((response) => {
         setMainCarousel(response.data.content);
       });
     }, []);
 
     useEffect(() => {
-      axios.get("http://15.164.63.83:8080/products/soup").then((response) => {
+      axios.get("http://15.165.65.200/products/soup").then((response) => {
         setSoupCarousel(response.data.content);
 
       });
@@ -90,6 +97,14 @@ const Carousel = (props) => {
         }
     }
 
+    const [modalStyle, setModalStyle] = useState({display : "none"})
+
+      const openModal = ()=> {
+        const body = document.querySelector("body");
+        preventScroll(body,true)
+        setModalStyle({})  
+    };
+
   return (
     <React.Fragment>
         {setData()}
@@ -100,6 +115,7 @@ const Carousel = (props) => {
         <Slider style={{display : "flex", alignItems : "center"}} {...settings}> 
         {sidedish.map((list) => {
         return (
+            <CarouselItemWrap data-hash = {list.hash} onClick = {openModal}>
           <CarouselItem
             hash = {list.hash}
             title = {list.title}
@@ -111,11 +127,13 @@ const Carousel = (props) => {
             deliveryTypes = {list.deliveryTypes}
             badges = {list.badges}
           />
+          </CarouselItemWrap>
         );
       })}
         </Slider>
         </CarouselContentWrap>
       </CarouselWrap>
+      <div style={modalStyle}><Modal/></div>
     </React.Fragment>
   );
 };
