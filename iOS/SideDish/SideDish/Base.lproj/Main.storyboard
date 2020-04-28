@@ -195,7 +195,7 @@
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" text="5,200원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83c-5y-WBu">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" text="5,200원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83c-5y-WBu" customClass="PriceLabel" customModule="SideDish" customModuleProvider="target">
                                                                                 <rect key="frame" x="327.5" y="0.0" width="56.5" height="18"/>
                                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                                                 <color key="textColor" red="0.39313471319999999" green="0.85732406380000004" blue="0.86328983309999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -221,7 +221,7 @@
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" text="배송정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwL-9T-tyY">
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="배송정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwL-9T-tyY">
                                                                                         <rect key="frame" x="0.0" y="58" width="52" height="18"/>
                                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                                                         <nil key="textColor"/>
@@ -316,9 +316,15 @@
                         <viewLayoutGuide key="safeArea" id="anX-Mb-WLZ"/>
                     </view>
                     <connections>
+                        <outlet property="deliveryFeeLabel" destination="QSG-wS-fyR" id="lIl-NG-MJ0"/>
+                        <outlet property="deliveryInfoLabel" destination="6bL-e3-sZr" id="PHx-4k-BaP"/>
+                        <outlet property="descriptionLabel" destination="wlA-6W-zir" id="txU-0m-NVW"/>
                         <outlet property="detailImageStack" destination="elm-GK-Gmu" id="r1l-cI-ZRb"/>
+                        <outlet property="pointLabel" destination="f1B-8A-j9a" id="fJr-jJ-due"/>
                         <outlet property="previewScrollView" destination="hAq-Wt-zer" id="Gq8-U7-c8F"/>
+                        <outlet property="priceLabel" destination="83c-5y-WBu" id="ZHs-Ja-C3v"/>
                         <outlet property="thumbImageStack" destination="0va-J3-dqQ" id="6Ne-z3-PlO"/>
+                        <outlet property="titleLabel" destination="UfO-yY-qkz" id="vH9-56-jM8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hG-OF-PAS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -361,7 +367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YtQ-O3-7ke" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-946.37681159420299" y="-571.20535714285711"/>
+            <point key="canvasLocation" x="-655" y="-571"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="1Cr-Aw-J8d">

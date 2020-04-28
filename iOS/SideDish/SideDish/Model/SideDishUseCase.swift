@@ -44,6 +44,18 @@ struct SideDishUseCase {
         })
     }
     
+    static func loadDetail(hash: String, completed: @escaping (DetailSideDish) -> ()) {
+        NetworkManager.httpRequest(url: serverUrl + "detail/\(hash)", method: .GET) { (data, response, error) in
+            guard let data = data else {
+                NotificationCenter.default.post(name: loadFailed, object: nil, userInfo: ["title":"데이터 로드 실패!","message":"네트워크 연결을 확인해주세요!"])
+                return
+            }
+            guard let detail = try? JSONDecoder().decode(DetailSideDishData.self, from: data).content else { return }
+            
+            completed(detail)
+        }
+    }
+    
     static func loadImage(url: String, completed: @escaping (Data) -> ()) {
         NetworkManager.httpRequest(url: url, method: .GET) { (data, response, error) in
             guard let data = data else {

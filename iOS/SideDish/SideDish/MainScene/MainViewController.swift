@@ -89,6 +89,7 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let descriptionViewController = storyboard?.instantiateViewController(withIdentifier: DescriptionViewController.identifier) as? DescriptionViewController else { return }
+        descriptionViewController.updateData(hash: dataManager[indexPath.section][indexPath.row].hash)
         navigationController?.pushViewController(descriptionViewController, animated: true)
     }
 }
