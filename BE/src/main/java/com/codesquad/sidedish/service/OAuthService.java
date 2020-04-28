@@ -1,7 +1,6 @@
 package com.codesquad.sidedish.service;
 
 import com.codesquad.sidedish.entity.OAuthGithubToken;
-import com.codesquad.sidedish.entity.User;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
