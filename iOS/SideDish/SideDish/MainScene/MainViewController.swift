@@ -96,8 +96,8 @@ extension MainViewController: UITableViewDelegate {
 }
 
 extension MainViewController: PresentingViewController {
-    func orderSuccessAlert() {
-        let alert = UIAlertController(title: "주문 성공!", message: "감사합니다", preferredStyle: .alert)
+    func orderSuccessAlert(menuName: String, date: String) {
+        let alert = UIAlertController(title: "주문 성공!", message: "상품명: \(menuName)\n주문일자: \(date)", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         present(alert, animated: true)

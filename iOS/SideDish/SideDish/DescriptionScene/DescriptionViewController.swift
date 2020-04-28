@@ -9,13 +9,14 @@
 import UIKit
 
 protocol PresentingViewController {
-    func orderSuccessAlert()
+    func orderSuccessAlert(menuName: String, date: String)
 }
 
 class DescriptionViewController: UIViewController {
     static let identifier = "description"
     
     var delegate: PresentingViewController?
+    private var selectedDish: String?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -42,6 +43,7 @@ class DescriptionViewController: UIViewController {
     }
     
     private func updateView(data: DetailSideDish) {
+        selectedDish = data.title
         DispatchQueue.main.async {
             self.titleLabel.text = data.title
             self.descriptionLabel.text = data.description
@@ -80,7 +82,7 @@ class DescriptionViewController: UIViewController {
             present(alert, animated: true)
         } else {
             navigationController?.popViewController(animated: true)
-            delegate?.orderSuccessAlert()
+            delegate?.orderSuccessAlert(menuName: selectedDish!, date: Date().currentDate)
         }
     }
 }
