@@ -14,6 +14,7 @@ http://15.165.65.200
     
 ### 응답 데이터
 - 정상 응답 
+   - 상태 코드 : 200 (OK)
 ```
 {
     "status": "SUCCESS",
@@ -74,6 +75,7 @@ http://15.165.65.200
     
 ### 응답 데이터 
 - 정상 응답 
+   - 상태 코드 : 200 (OK)
 ```
 {
     "status": "SUCCESS",
@@ -116,5 +118,72 @@ http://15.165.65.200
 {
     "status": "ERROR",
     "content": "존재하지 않는 상품입니다."
+}
+```
+
+## 주문하기 요청 API
+### POST `/products/detail/{hash}/order`
+
+### 필요한 데이터
+- `{hash}`에 주문하고자 하는 상품 hash 값을 넣어주세요.
+  > 예시
+                                         
+    `http://15.165.65.200/products/detail/H72C3/order`
+    
+- 로그인 후 응답받은 `Authorization` 쿠키를 그대로 요청 헤더
+(쿠키)에 담아주세요. 
+  > 예시
+                                          
+    `Authorization={jwt token}` 
+
+  > FE는 쿠키가 브라우저에서 자동으로 유지될 것으로 예상되지만 확인이 필요합니다.
+
+### 응답 데이터 
+- 정상 응답
+   - 상태 코드 : 200 (OK)
+```
+{
+    "status": "SUCCESS",
+    "content": "Order Success"
+}
+```
+
+- 에러 응답
+  - 로그인하지 않은 접속자인 경우
+  - 상태 코드 : 401 (Unauthorized)
+```
+{
+    "status": "ERROR",
+    "content": "Not Logged in User"
+}
+```
+
+- 에러 응답
+  - 쿠키 헤더가 존재하지 않는 경우
+  - 상태 코드 : 401 (Unauthorized)
+```
+{
+    "status": "ERROR",
+    "content": "No Any Cookies"
+}
+```
+
+- 에러 응답
+  - 쿠키 중에 `Authorization` 쿠키가 존재하지 않는 경우
+  - 상태 코드 : 401 (Unauthorized)
+```
+{
+    "status": "ERROR",
+    "content": "No Authorization Cookie"
+}
+```
+
+- 에러 응답
+  - `Authorization` 쿠키에 저장된 JWT 토큰이 유효하지 않은 경우
+  - 상태 코드 : 401 (Unauthorized)
+```
+{
+    "status": "ERROR",
+    "content": "Invalid Jwt token"
 }
 ```
