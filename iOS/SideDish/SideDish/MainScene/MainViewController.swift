@@ -39,7 +39,7 @@ class MainViewController: UIViewController {
     private func configureUseCase() {
         SideDishUseCase.loadAll { (section, list) in
             list.forEach {
-                let imageName = $0.hash
+                let imageName = $0.image.filterRegex(#"(.*(\/))"#)
                 SideDishUseCase.loadImage(url: $0.image) {
                     guard let image = UIImage(data: $0) else { return }
                     ImageFileManager.saveImage(image: image, name: imageName)

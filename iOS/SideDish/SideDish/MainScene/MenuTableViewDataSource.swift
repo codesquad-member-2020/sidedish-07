@@ -29,7 +29,7 @@ class MenuTableViewDataSource: NSObject, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell else { return UITableViewCell() }
         let sideDish = dataManager[indexPath.section][indexPath.row]
         cell.updateCell(data: sideDish)
-        guard let image = ImageFileManager.getSavedImage(name: sideDish.hash) else {
+        guard let image = ImageFileManager.getSavedImage(name: sideDish.image.filterRegex(#"(.*(\/))"#)) else {
             NotificationCenter.default.post(name: MenuTableViewDataSource.reloadCell, object: nil, userInfo: [MenuTableViewDataSource.reloadCell: indexPath])
             return cell
         }

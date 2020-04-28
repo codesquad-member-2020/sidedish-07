@@ -29,6 +29,7 @@
 		44DE3E4B2451D232007C5AA8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DE3E4A2451D232007C5AA8 /* DataManager.swift */; };
 		44DE3E4D2451E0BF007C5AA8 /* MenuTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DE3E4C2451E0BF007C5AA8 /* MenuTableViewDataSource.swift */; };
 		44DE3E4F2451E22A007C5AA8 /* PriceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DE3E4E2451E22A007C5AA8 /* PriceLabel.swift */; };
+		44E981C02458536100C4257E /* StringRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E981BF2458536100C4257E /* StringRegex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		44DE3E4A2451D232007C5AA8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		44DE3E4C2451E0BF007C5AA8 /* MenuTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewDataSource.swift; sourceTree = "<group>"; };
 		44DE3E4E2451E22A007C5AA8 /* PriceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceLabel.swift; sourceTree = "<group>"; };
+		44E981BF2458536100C4257E /* StringRegex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringRegex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			children = (
 				44A62127244DA6F8000EC9D3 /* AppDelegate.swift */,
 				44A62129244DA6F8000EC9D3 /* SceneDelegate.swift */,
+				44E981BE2458534900C4257E /* Extension */,
 				44DE3E4524506BC2007C5AA8 /* Model */,
 				44129A3A245719B200A4A6E7 /* Login */,
 				445282FD244F18EB0077384D /* MainScene */,
@@ -161,6 +164,14 @@
 				44129A342454941700A4A6E7 /* ImageFileManager.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		44E981BE2458534900C4257E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				44E981BF2458536100C4257E /* StringRegex.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +263,7 @@
 				4460EE7824533F9700EECE13 /* SideDishUseCase.swift in Sources */,
 				44A6212A244DA6F8000EC9D3 /* SceneDelegate.swift in Sources */,
 				44129A4024573F9B00A4A6E7 /* LoginButton.swift in Sources */,
+				44E981C02458536100C4257E /* StringRegex.swift in Sources */,
 				44DE3E4D2451E0BF007C5AA8 /* MenuTableViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
