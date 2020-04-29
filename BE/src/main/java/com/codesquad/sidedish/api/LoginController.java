@@ -51,7 +51,7 @@ public class LoginController {
 
         if (userRepository.countByGithubEmail(newUser.getGithubEmail()) <= 0)
             userRepository.save(newUser);
-
+      
         String jwt = JwtToken.JwtTokenMaker(newUser);
         log.debug("published token: {}", jwt);
 
