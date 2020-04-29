@@ -66,5 +66,16 @@ struct SideDishUseCase {
             completed(data)
         }
     }
+    
+    static func orderRequest(hash: String, completed: @escaping (OrderResponse) -> ()) {
+        NetworkManager.httpRequestWith(token: token, url: serverUrl + "detail/\(hash)/order") { (data, response, error) in
+            guard let data = data else {
+                NotificationCenter.default.post(name: loadFailed, object: nil, userInfo: ["title":"데이터 로드 실패!","message":"네트워크 연결을 확인해주세요!"])
+                return
+            }
+            guard let orderResponse = try? JSONDecoder().decode(OrderResponse.self, from: data) else { return }
+            completed(orderResponse)
+        }
+    }
 }
 

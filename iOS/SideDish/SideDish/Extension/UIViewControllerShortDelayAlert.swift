@@ -11,9 +11,11 @@ import UIKit
 extension UIViewController {
     func shortDelayAlert(title: String?, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        present(alert, animated: true) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                alert.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    alert.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }

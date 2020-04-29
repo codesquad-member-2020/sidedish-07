@@ -38,3 +38,8 @@ struct DetailSideDish: Codable {
     var thumbImages: [String]
     var detailImages: [String]
 }
+
+struct OrderResponse: Codable {
+    var status: String
+    var content: String
+}
