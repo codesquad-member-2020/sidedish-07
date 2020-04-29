@@ -68,6 +68,7 @@ const Modal = (props) => {
   const TitleWrap = styled.div`
     width: 100%;
     display: flex;
+    align-items : flex-start;
   `;
   const Title = styled.div`
     width: 95%;

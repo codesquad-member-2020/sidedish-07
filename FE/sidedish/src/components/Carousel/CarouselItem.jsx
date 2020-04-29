@@ -12,7 +12,6 @@ const CarouselItem = (props) => {
         flex-direction : column;
         justify-content : center;
         align-items : center;
-
     `;
 
     const ItemImage = styled.img`
@@ -85,7 +84,7 @@ const CarouselItem = (props) => {
     };
 
     return (
-      <ItemWrap data-hash={props.hash}>
+      <ItemWrap data-hash={props.hash} id="hashData">
         <ItemImage src={props.image} />
         <ItemTitle>{props.title}</ItemTitle>
         <ItemDescription>{props.description}</ItemDescription>

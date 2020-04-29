@@ -16,11 +16,9 @@ function App() {
 
   const Wrap = styled.div`
     width : 100%;
-    /* height : 930px; */
     padding : 5px;
     box-sizing : border-box;
     margin : auto;
-    /* overflow : hidden; */
   `;
 
   let [sideCarousel, setSideCarousel] = useState([]);

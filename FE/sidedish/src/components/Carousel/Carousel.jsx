@@ -74,7 +74,7 @@ const Carousel = (props) => {
 
 
   const openModal = (e) => {
-    const hashData = e.target.closest('.css-auotnx');
+    const hashData = e.target.closest('#hashData');
     const body = document.querySelector("body");
     preventScroll(body, true);
     fetch(hashData.dataset.hash);
@@ -89,8 +89,6 @@ const fetch = (hash)=> {
       
     })
   };
-
-  console.log(props)
 
   return (
     <React.Fragment>
