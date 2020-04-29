@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aJc-5B-ZAv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K64-ZE-Lda">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SideDish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="SideDish" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,7 +50,7 @@
                                                     <color key="textColor" red="0.22445049880000001" green="0.77192187310000004" blue="0.75248271229999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" ambiguous="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="59M-ZN-2BN">
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" ambiguous="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="59M-ZN-2BN" customClass="BadgeStackView" customModule="SideDish" customModuleProvider="target">
                                                     <rect key="frame" x="142" y="90" width="42" height="50"/>
                                                 </stackView>
                                             </subviews>
@@ -117,6 +117,9 @@
                                 <state key="normal" title="주문하기">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="orderButtonTabbed:" destination="JA1-9d-qFY" eventType="touchUpInside" id="kVf-BS-ESO"/>
+                                </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bSe-WE-tYE">
                                 <rect key="frame" x="0.0" y="44" width="414" height="752.5"/>
@@ -124,7 +127,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLe-Jy-HrV">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="525"/>
                                         <subviews>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAq-Wt-zer">
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAq-Wt-zer" customClass="PreviewScrollView" customModule="SideDish" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5I-yQ-aGh">
@@ -152,8 +155,11 @@
                                                 </constraints>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="raO-jg-hbt"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="7Vn-bL-2Lf"/>
+                                                <connections>
+                                                    <outlet property="stackView" destination="0va-J3-dqQ" id="VX0-WV-aes"/>
+                                                </connections>
                                             </scrollView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="elm-GK-Gmu">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="elm-GK-Gmu" customClass="DetailImageStack" customModule="SideDish" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="301" width="414" height="224"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BeW-CC-0ds">
@@ -195,7 +201,7 @@
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" text="5,200원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83c-5y-WBu">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" text="5,200원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83c-5y-WBu" customClass="PriceLabel" customModule="SideDish" customModuleProvider="target">
                                                                                 <rect key="frame" x="327.5" y="0.0" width="56.5" height="18"/>
                                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                                                 <color key="textColor" red="0.39313471319999999" green="0.85732406380000004" blue="0.86328983309999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -221,7 +227,7 @@
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" text="배송정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwL-9T-tyY">
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="배송정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwL-9T-tyY">
                                                                                         <rect key="frame" x="0.0" y="58" width="52" height="18"/>
                                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                                                         <nil key="textColor"/>
@@ -316,20 +322,120 @@
                         <viewLayoutGuide key="safeArea" id="anX-Mb-WLZ"/>
                     </view>
                     <connections>
+                        <outlet property="deliveryFeeLabel" destination="QSG-wS-fyR" id="lIl-NG-MJ0"/>
+                        <outlet property="deliveryInfoLabel" destination="6bL-e3-sZr" id="PHx-4k-BaP"/>
+                        <outlet property="descriptionLabel" destination="wlA-6W-zir" id="txU-0m-NVW"/>
                         <outlet property="detailImageStack" destination="elm-GK-Gmu" id="r1l-cI-ZRb"/>
+                        <outlet property="pointLabel" destination="f1B-8A-j9a" id="fJr-jJ-due"/>
                         <outlet property="previewScrollView" destination="hAq-Wt-zer" id="Gq8-U7-c8F"/>
-                        <outlet property="thumbImageStack" destination="0va-J3-dqQ" id="6Ne-z3-PlO"/>
+                        <outlet property="priceLabel" destination="83c-5y-WBu" id="ZHs-Ja-C3v"/>
+                        <outlet property="titleLabel" destination="UfO-yY-qkz" id="vH9-56-jM8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hG-OF-PAS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2186.9565217391305" y="137.94642857142856"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="ejw-d4-qNs">
+            <objects>
+                <viewController id="K64-ZE-Lda" customClass="LoginViewController" customModule="SideDish" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HuZ-5O-kiG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="QmK-ty-sXa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jer-3J-eXU" customClass="LoginButton" customModule="SideDish" customModuleProvider="target">
+                                <rect key="frame" x="100.5" y="781" width="213" height="40"/>
+                                <color key="backgroundColor" red="0.22445049880000001" green="0.77192187310000004" blue="0.75248271229999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title=" Login with GitHub" image="GitHub-Mark">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginWithGitHubButtonTabbed:" destination="K64-ZE-Lda" eventType="touchUpInside" id="tHW-gk-9Ym"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyL-wG-mao" customClass="LoginButton" customModule="SideDish" customModuleProvider="target">
+                                <rect key="frame" x="100.5" y="721" width="213" height="40"/>
+                                <color key="backgroundColor" red="0.22445049880000001" green="0.77192187310000004" blue="0.75248271229999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="비회원으로 구경하기">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="nonMemberLoginButtonTabbed:" destination="K64-ZE-Lda" eventType="touchUpInside" id="Inf-it-PsP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="sfQ-Gc-sLO" firstAttribute="bottom" secondItem="jer-3J-eXU" secondAttribute="bottom" multiplier="1.05" id="5id-fs-5Sa"/>
+                            <constraint firstItem="jer-3J-eXU" firstAttribute="centerX" secondItem="sfQ-Gc-sLO" secondAttribute="centerX" id="Ngb-m5-ddQ"/>
+                            <constraint firstItem="cyL-wG-mao" firstAttribute="bottom" secondItem="jer-3J-eXU" secondAttribute="top" constant="-20" id="QPC-2b-p5q"/>
+                            <constraint firstItem="cyL-wG-mao" firstAttribute="width" secondItem="jer-3J-eXU" secondAttribute="width" id="R5j-zs-D9k"/>
+                            <constraint firstItem="QmK-ty-sXa" firstAttribute="bottom" secondItem="HuZ-5O-kiG" secondAttribute="bottom" id="XkS-Xk-WO4"/>
+                            <constraint firstItem="cyL-wG-mao" firstAttribute="centerX" secondItem="QmK-ty-sXa" secondAttribute="centerX" id="eP8-56-Ye9"/>
+                            <constraint firstItem="QmK-ty-sXa" firstAttribute="trailing" secondItem="HuZ-5O-kiG" secondAttribute="trailing" id="iRu-pG-8mn"/>
+                            <constraint firstItem="QmK-ty-sXa" firstAttribute="top" secondItem="HuZ-5O-kiG" secondAttribute="top" id="mHq-qw-ppx"/>
+                            <constraint firstItem="cyL-wG-mao" firstAttribute="height" secondItem="jer-3J-eXU" secondAttribute="height" id="sx3-OI-mN4"/>
+                            <constraint firstItem="QmK-ty-sXa" firstAttribute="leading" secondItem="HuZ-5O-kiG" secondAttribute="leading" id="zuG-6O-fYD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sfQ-Gc-sLO"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YtQ-O3-7ke" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-655" y="-571"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="1Cr-Aw-J8d">
+            <objects>
+                <viewController storyboardIdentifier="web" id="Idc-FB-649" customClass="WebViewController" customModule="SideDish" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="27n-bV-FEx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4A-QW-XLy">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="8iD-oV-lvi">
+                                <rect key="frame" x="197" y="443" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8iD-oV-lvi" firstAttribute="centerX" secondItem="V4A-QW-XLy" secondAttribute="centerX" id="JDz-4K-Vad"/>
+                            <constraint firstItem="8iD-oV-lvi" firstAttribute="centerY" secondItem="V4A-QW-XLy" secondAttribute="centerY" id="M12-pz-mUa"/>
+                            <constraint firstItem="V4A-QW-XLy" firstAttribute="bottom" secondItem="4dS-hf-9jb" secondAttribute="bottom" id="UOi-69-ZnR"/>
+                            <constraint firstItem="V4A-QW-XLy" firstAttribute="leading" secondItem="4dS-hf-9jb" secondAttribute="leading" id="Y3J-E8-EA7"/>
+                            <constraint firstItem="V4A-QW-XLy" firstAttribute="trailing" secondItem="4dS-hf-9jb" secondAttribute="trailing" id="b8a-W4-8KT"/>
+                            <constraint firstItem="V4A-QW-XLy" firstAttribute="top" secondItem="4dS-hf-9jb" secondAttribute="top" id="htP-L2-2LF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4dS-hf-9jb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Knx-1G-AKD"/>
+                    <connections>
+                        <outlet property="indicator" destination="8iD-oV-lvi" id="MTY-aZ-DOf"/>
+                        <outlet property="webView" destination="V4A-QW-XLy" id="wbZ-tR-ul8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OjD-89-eLW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="-571"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="KRY-PN-C4W">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aJc-5B-ZAv" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="main" automaticallyAdjustsScrollViewInsets="NO" id="aJc-5B-ZAv" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="tbF-Cb-Pfu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rdh-ab-qpd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -345,6 +451,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="GitHub-Mark" width="40" height="40"/>
+        <image name="background" width="480" height="853.33331298828125"/>
         <image name="sample" width="98.666664123535156" height="98.666664123535156"/>
     </resources>
 </document>

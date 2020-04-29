@@ -28,18 +28,13 @@ class MenuTableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell else { return UITableViewCell() }
         let sideDish = dataManager[indexPath.section][indexPath.row]
-        guard cell.hashCode != sideDish.hash else { return cell }
         cell.updateCell(data: sideDish)
-        if let image = ImageFileManager.getSavedImage(name: sideDish.hash) {
-            DispatchQueue.main.async {
-                cell.menuImage.image = image
-            }
-        } else {
-            SideDishUseCase.loadImage(url: sideDish.image) { data in
-                guard let image = UIImage(data: data) else { return }
-                ImageFileManager.saveImage(image: image, name: sideDish.hash)
-                NotificationCenter.default.post(name: MenuTableViewDataSource.reloadCell, object: nil, userInfo: [MenuTableViewDataSource.reloadCell: indexPath])
-            }
+        guard let image = ImageFileManager.getSavedImage(name: sideDish.image.filterRegex(#"(.*(\/))"#)) else {
+            NotificationCenter.default.post(name: MenuTableViewDataSource.reloadCell, object: nil, userInfo: [MenuTableViewDataSource.reloadCell: indexPath])
+            return cell
+        }
+        DispatchQueue.main.async {
+            cell.menuImage.image = image
         }
         return cell
     }
