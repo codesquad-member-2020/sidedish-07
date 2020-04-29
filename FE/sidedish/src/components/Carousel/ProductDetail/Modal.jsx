@@ -39,26 +39,25 @@ const Modal = (props) => {
     width: 43%;
     height: 100%;
     box-sizing: border-box;
-    padding : 25px;
+    padding: 25px;
   `;
 
   const TopImage = styled.img`
     width: 100%;
   `;
   const ThumbImagesWrap = styled.div`
-    width : 100%;
-    display : flex;
-    box-sizing : border-box;
-    margin-top : 15px;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    margin-top: 15px;
   `;
 
   const ThumbImage = styled.img`
-    width : 65px;
-    height : 65px;
-    margin-right : 3px;
-    background : #D8D8D8;
+    width: 65px;
+    height: 65px;
+    margin-right: 3px;
+    background: #d8d8d8;
   `;
-
 
   const ProductInfoWrap = styled.div`
     width: 57%;
@@ -68,7 +67,7 @@ const Modal = (props) => {
   const TitleWrap = styled.div`
     width: 100%;
     display: flex;
-    align-items : flex-start;
+    align-items: flex-start;
   `;
   const Title = styled.div`
     width: 95%;
@@ -155,9 +154,8 @@ const Modal = (props) => {
     margin-right: 10px;
     margin-bottom: 10px;
     text-align: center;
-    &::-webkit-inner-spin-button{
-        height : 40px;
-   
+    &::-webkit-inner-spin-button {
+      height: 40px;
     }
   `;
 
@@ -183,26 +181,31 @@ const Modal = (props) => {
     margin-top: 12px;
     margin-bottom: 15px;
   `;
-   const CartBtnWarp = styled.div`
-        width : 100%;
-        text-align : center;
-    `;
+  const CartBtnWarp = styled.div`
+    width: 100%;
+    text-align: center;
+  `;
   const CartBtn = styled.button`
-    background : #18c2bd;
-    height : 50px;
-    width : 85%;
-    color : white;
-    font-size : 18px;
-    font-weight : bold;
-    outline : 0;
-    border : 0;
-    margin : 30px 0px ;
+    background: #18c2bd;
+    height: 50px;
+    width: 85%;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    outline: 0;
+    border: 0;
+    margin: 30px 0px;
   `;
 
   const closeBtnClickHandler = () => {
     const body = document.querySelector("body");
     preventScroll(body, false);
     props.setModalStyle({ display: "none" });
+  };
+
+  const priceRender = () => {
+    if (props.salePrice == "0원") return props.normalPrice;
+    return props.salePrice;
   };
 
   return (
@@ -213,12 +216,10 @@ const Modal = (props) => {
             <ProductImageWrap>
               <TopImage src={props.topImage} />
               <ThumbImagesWrap>
-              {props.thumbImages.map((image) => {  
-              return (
-                <ThumbImage src={image}/>
-              );
-            })}
-    </ThumbImagesWrap>
+                {props.thumbImages.map((image) => {
+                  return <ThumbImage src={image} />;
+                })}
+              </ThumbImagesWrap>
             </ProductImageWrap>
             <ProductInfoWrap>
               <TitleWrap>
@@ -241,7 +242,7 @@ const Modal = (props) => {
                 <InfoTitle>배송비</InfoTitle>
                 <Info>{props.deliveryFee}</Info>
               </InfoWrap>
-              <Price>{props.normalPrice}</Price>
+              <Price>{priceRender()}</Price>
               <LineWrap>
                 <Line />
               </LineWrap>
@@ -259,7 +260,7 @@ const Modal = (props) => {
               </LineWrap>
               <TotalWrap>
                 <TotalTitle>총 상품금액</TotalTitle>
-                <TotalPrice>{props.normalPrice}</TotalPrice>
+                <TotalPrice>{priceRender()}</TotalPrice>
               </TotalWrap>
               <CartBtnWarp>
                 <CartBtn>담기</CartBtn>
