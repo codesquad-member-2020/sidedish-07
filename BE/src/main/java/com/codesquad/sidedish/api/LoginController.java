@@ -31,7 +31,7 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public String OauthTest(@PathParam("code") String code, HttpServletResponse response) throws IOException {
+    public String OauthTest(@PathParam("code") String code, HttpServletResponse response) {
         log.debug("{}", code);
         OAuthGithubToken oAuthGithubToken = oauthService.getAccessToken(code);
 
@@ -51,11 +51,13 @@ public class LoginController {
 
         if (userRepository.countByGithubEmail(newUser.getGithubEmail()) <= 0)
             userRepository.save(newUser);
-
+      
         String jwt = JwtToken.JwtTokenMaker(newUser);
         log.debug("published token: {}", jwt);
 
-        response.addCookie(new Cookie("Authorization", jwt));
+        Cookie cookie = new Cookie("Authorization", jwt);
+        cookie.setPath("/");
+        response.addCookie(cookie);
         return "redirect:/";
     }
 }

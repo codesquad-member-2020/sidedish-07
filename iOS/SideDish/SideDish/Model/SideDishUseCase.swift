@@ -25,7 +25,8 @@ struct SideDishUseCase {
     }
     
     static let loadFailed = NSNotification.Name.init("loadFailed")
-    static let serverUrl = "http://15.165.190.16/products/"
+    static let serverUrl = "http://15.165.65.200/products/"
+    static var token: String?
     
     static func loadAll(completed: @escaping (Int, [SideDish]) -> ()) {
         loadList(category: .main, completed: completed)
@@ -44,6 +45,18 @@ struct SideDishUseCase {
         })
     }
     
+    static func loadDetail(hash: String, completed: @escaping (DetailSideDish) -> ()) {
+        NetworkManager.httpRequest(url: serverUrl + "detail/\(hash)", method: .GET) { (data, response, error) in
+            guard let data = data else {
+                NotificationCenter.default.post(name: loadFailed, object: nil, userInfo: ["title":"데이터 로드 실패!","message":"네트워크 연결을 확인해주세요!"])
+                return
+            }
+            guard let detail = try? JSONDecoder().decode(DetailSideDishData.self, from: data).content else { return }
+            
+            completed(detail)
+        }
+    }
+    
     static func loadImage(url: String, completed: @escaping (Data) -> ()) {
         NetworkManager.httpRequest(url: url, method: .GET) { (data, response, error) in
             guard let data = data else {
@@ -51,6 +64,17 @@ struct SideDishUseCase {
                 return
             }
             completed(data)
+        }
+    }
+    
+    static func orderRequest(hash: String, completed: @escaping (OrderResponse) -> ()) {
+        NetworkManager.httpRequestWith(token: token, url: serverUrl + "detail/\(hash)/order") { (data, response, error) in
+            guard let data = data else {
+                NotificationCenter.default.post(name: loadFailed, object: nil, userInfo: ["title":"데이터 로드 실패!","message":"네트워크 연결을 확인해주세요!"])
+                return
+            }
+            guard let orderResponse = try? JSONDecoder().decode(OrderResponse.self, from: data) else { return }
+            completed(orderResponse)
         }
     }
 }

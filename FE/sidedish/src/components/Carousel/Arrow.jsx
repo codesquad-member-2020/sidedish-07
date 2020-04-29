@@ -6,7 +6,7 @@ const Arrow = (props) => {
 
     const Arrow = styled.img`
         width : 50px;
-        margin : 15px;
+        margin : 25px;
     `;
     
     let className = props.type === "next" ? "nextArrow" : "prevArrow";

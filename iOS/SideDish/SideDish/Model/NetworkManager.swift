@@ -28,4 +28,15 @@ class NetworkManager {
         request.httpMethod = method.rawValue
         session.dataTask(with: request, completionHandler: completionHandler).resume()
     }
+    
+    static func httpRequestWith(token: String?, url: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        guard let url = URL(string: url) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        if let token = token {
+            request.setValue("Authorization=\(token)", forHTTPHeaderField: "Cookie")
+        }
+        request.httpShouldHandleCookies = true
+        session.dataTask(with: request, completionHandler: completionHandler).resume()
+    }
 }

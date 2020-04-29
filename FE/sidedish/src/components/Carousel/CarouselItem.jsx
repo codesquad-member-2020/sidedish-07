@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
+import axios from "axios";
+import Modal from "./ProductDetail/Modal"
+
 
 const CarouselItem = (props) => {
 
@@ -9,7 +12,6 @@ const CarouselItem = (props) => {
         flex-direction : column;
         justify-content : center;
         align-items : center;
-
     `;
 
     const ItemImage = styled.img`
@@ -78,24 +80,22 @@ const CarouselItem = (props) => {
 
     const priceRender = ()=>{
         if(props.salePrice === '0원') return <Price>{props.normalPrice}</Price>
-        return <React.Fragment><BeforePrice>{props.normalPrice}</BeforePrice><Price>{props.salePrice}</Price></React.Fragment>
-    }
-
-    const badgeRender = ()=>{
-        if(props.badges == '') return
-        for(let i = 0; i<props.badges.length; i++ ){
-        return <EventBadge>{props.badges[i]}</EventBadge>
-        
-    }
-    }
+        return <><BeforePrice>{props.normalPrice}</BeforePrice><Price>{props.salePrice}</Price></>
+    };
 
     return (
-      <ItemWrap>
+      <ItemWrap data-hash={props.hash} id="hashData">
         <ItemImage src={props.image} />
         <ItemTitle>{props.title}</ItemTitle>
         <ItemDescription>{props.description}</ItemDescription>
         <ItemPrice>{priceRender()}</ItemPrice>
-        <BadgeWrap> {badgeRender()}</BadgeWrap>
+        <BadgeWrap>
+              {props.badges.map((badge) => {  
+              return (
+                <EventBadge>{badge}</EventBadge>
+              );
+            })}
+            </BadgeWrap>
       </ItemWrap>
     );
 };

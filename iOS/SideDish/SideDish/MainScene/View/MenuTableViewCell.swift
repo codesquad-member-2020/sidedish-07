@@ -10,9 +10,7 @@ import UIKit
 
 class MenuTableViewCell: UITableViewCell {
     static let reuseIdentifier = "menuCell"
-    
-    private(set) var hashCode = String()
-    
+
     @IBOutlet weak var menuImage: UIImageView! {
         didSet {
             configureMenuImage()
@@ -21,7 +19,7 @@ class MenuTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: PriceLabel!
-    @IBOutlet weak var eventBadgeStackView: UIStackView!
+    @IBOutlet weak var eventBadgeStackView: BadgeStackView!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,20 +30,10 @@ class MenuTableViewCell: UITableViewCell {
     }
     
     func updateCell(data: SideDish) {
-        hashCode = data.hash
         titleLabel.text = data.title
         descriptionLabel.text = data.description
         priceLabel.setPrice(sale: data.salePrice, normal: data.normalPrice)
-        eventBadgeStackView.arrangedSubviews.forEach {
-            $0.removeFromSuperview()
-        }
-        if let badges = data.badges {
-            badges.forEach {
-                let badge = KeywordLabel()
-                badge.setKeyword($0)
-                eventBadgeStackView.addArrangedSubview(badge)
-            }
-        }
+        eventBadgeStackView.updateBadges(data.badges)
     }
     
     private func configureMenuImage() {
