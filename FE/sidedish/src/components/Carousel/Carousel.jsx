@@ -48,70 +48,100 @@ const Carousel = (props) => {
   `;
 
   const CarouselTitle = styled.div`
-    color : #424242;
-    font-size : 30px;
-    margin-bottom : 45px;
+    color: #424242;
+    font-size: 30px;
+    margin-bottom: 45px;
   `;
 
   const CarouselItemWrap = styled.div`
-    outline : none;
-    border : none;
+    outline: none;
+    border: none;
   `;
-    
-    // let sidedish = [];
 
-    // const setData = ()=>{
-    //     switch(props.category){
-    //         case "밑반찬" :
-    //             sidedish = sideCarousel;
-    //             break;
-    //         case "메인반찬" :
-    //             sidedish = mainCarousel;
-    //             break;
-    //         case "국·찌개" :
-    //             sidedish = soupCarousel;
-    //             break;    
-    //     }
-    // }
+const ThumbImage = styled.img`
+    width : 20px;
+  `;
 
-    const [modalStyle, setModalStyle] = useState({display : "none"});
+  const [modalStyle, setModalStyle] = useState({ display: "none" });
+  const [thumbImages, setThumbImages] = useState();
 
-      const openModal = ()=> {
-        const body = document.querySelector("body");
-        preventScroll(body,true);
-        setModalStyle({});
-    };
 
- 
+  const [product, setProduct] = useState({
+    title: null,
+    description: null,
+    salePrice: null,
+    normalPrice: null,
+    point: null,
+    deliveryFee: null,
+    deliveryInfo: null,
+    topImage: null,
+    thumbImages: [],
+  });
+
+
+  const openModal = (e) => {
+    const hashData = e.target.closest('.css-auotnx');
+    const body = document.querySelector("body");
+    preventScroll(body, true);
+    fetch(hashData.dataset.hash);
+    setModalStyle({});
+};
+
+const fetch = (hash)=> {
+    axios
+    .get(`http://15.165.65.200/products/detail/${hash}`)
+    .then((response) => {
+      setProduct(response.data.content);
+      
+    })
+  };
+//   const images = response.data.content.thumbImages.map((image) => (<ThumbImage src={image}/>));
+//       setThumbImages({images})
 
   return (
     <React.Fragment>
       <CarouselWrap>
-          <CarouselContentWrap>
-        <CarouselCategory>{props.category}</CarouselCategory>
-        <CarouselTitle>{props.title}</CarouselTitle>
-        <Slider style={{display : "flex", alignItems : "center"}} {...settings}> 
-        {props.data.map((list) => {
-        return (
-            <CarouselItemWrap data-hash={list.hash} onClick = {openModal}>
-          <CarouselItem
-            hash = {list.hash}
-            title = {list.title}
-            alt = {list.alt}
-            description = {list.description}
-            salePrice = {list.salePrice}
-            normalPrice = {list.normalPrice}
-            image = {list.image}
-            deliveryTypes = {list.deliveryTypes}
-            badges = {list.badges}
-          />
-          </CarouselItemWrap>
-        );
-      })}
-        </Slider>
+        <CarouselContentWrap>
+          <CarouselCategory>{props.category}</CarouselCategory>
+          <CarouselTitle>{props.title}</CarouselTitle>
+          <Slider
+            style={{ display: "flex", alignItems: "center" }}
+            {...settings}
+          >
+            {props.data.map((list) => {
+              return (
+                <CarouselItemWrap onClick={openModal}>
+                  <CarouselItem
+                    hash={list.hash}
+                    title={list.title}
+                    alt={list.alt}
+                    description={list.description}
+                    salePrice={list.salePrice}
+                    normalPrice={list.normalPrice}
+                    image={list.image}
+                    deliveryTypes={list.deliveryTypes}
+                    badges={[list.badges]}
+                  />
+                </CarouselItemWrap>
+              );
+            })}
+          </Slider>
         </CarouselContentWrap>
       </CarouselWrap>
-      <div style={modalStyle}><Modal setModalStyle = {setModalStyle}/></div>
+      <div style={modalStyle}>
+        <Modal
+          setModalStyle={setModalStyle}
+          title={product.title}
+          description={product.description}
+          salePrice={product.salePrice}
+          normalPrice={product.normalPrice}
+          point={product.point}
+          deliveryFee={product.deliveryFee}
+          deliveryInfo={product.deliveryInfo}
+          topImage={product.topImage}
+          thumbImages={product.thumbImages}
+        />
+      </div>
     </React.Fragment>
   );
 };
