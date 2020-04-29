@@ -197,17 +197,18 @@ const Modal = (props) => {
     margin: 30px 0px;
   `;
 
+  const priceRender = () => {
+    if (props.salePrice === '0원') return props.normalPrice;
+    return props.salePrice;
+  };
+
   const closeBtnClickHandler = () => {
     const body = document.querySelector("body");
     preventScroll(body, false);
     props.setModalStyle({ display: "none" });
   };
 
-  const priceRender = () => {
-    if (props.salePrice == "0원") return props.normalPrice;
-    return props.salePrice;
-  };
-
+  
   return (
     <>
       <ProductModal>
@@ -252,7 +253,7 @@ const Modal = (props) => {
                   type="number"
                   min="0"
                   max="15"
-                  placeholder="1"
+                  placeholder = "1"
                 ></QuantityInput>
               </QuantityWrap>
               <LineWrap>
