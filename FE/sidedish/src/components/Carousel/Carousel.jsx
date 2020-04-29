@@ -58,13 +58,7 @@ const Carousel = (props) => {
     border: none;
   `;
 
-const ThumbImage = styled.img`
-    width : 20px;
-  `;
-
   const [modalStyle, setModalStyle] = useState({ display: "none" });
-  const [thumbImages, setThumbImages] = useState();
-
 
   const [product, setProduct] = useState({
     title: null,
@@ -95,8 +89,8 @@ const fetch = (hash)=> {
       
     })
   };
-//   const images = response.data.content.thumbImages.map((image) => (<ThumbImage src={image}/>));
-//       setThumbImages({images})
+
+  console.log(props)
 
   return (
     <React.Fragment>
@@ -120,7 +114,7 @@ const fetch = (hash)=> {
                     normalPrice={list.normalPrice}
                     image={list.image}
                     deliveryTypes={list.deliveryTypes}
-                    badges={[list.badges]}
+                    badges={list.badges}
                   />
                 </CarouselItemWrap>
               );
