@@ -66,12 +66,17 @@ const Header = () => {
     const HeaderBtnTitle = styled.div`
     
     `;
+
+    const GitLoginBtn = styled.button`
+        margin-left : 10px;
+    `;
+
     return (
         <Header>
         <HeaderWrap>
           <HeaderTopWrap>
                 <AppLink>배민찬 앱 다운로드 ▼</AppLink>
-                <UserMenu> 로그인 ｜ 회원가입 ｜ 마이페이지 ｜ 고객센터 ｜ 새벽배송지역검색 ｜ 이벤트게시판 ｜ 장바구니  </UserMenu>
+                <UserMenu>  로그인 ｜ 회원가입 ｜ 마이페이지 ｜ 고객센터 ｜ 새벽배송지역검색 ｜ 이벤트게시판 ｜ 장바구니 ｜ <a href="https://github.com/login/oauth/authorize?client_id=71186054709e9adda0f9&scope=user:email&redirect_uri=http://15.165.65.200/login">깃헙로그인</a> </UserMenu>
             </HeaderTopWrap>
             <Line/>
             <HeaderContentWrap>
