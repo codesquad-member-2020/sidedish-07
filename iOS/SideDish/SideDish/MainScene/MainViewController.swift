@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class MainViewController: UIViewController {
     static let navigationControllerIdentifier = "main"
@@ -119,6 +120,13 @@ class MainViewController: UIViewController {
             self.menuTableView.reloadRows(at: [indexPath], with: .none)
         }
     }
+    
+    @objc private func sectionHeaderTapped(_ sender: UITapGestureRecognizer) {
+        guard let sectionHeader = sender.view as? MenuSectionHeader,
+            let section = sectionHeader.section,
+            let sectionTitle = dataManager.titleList[section] else { return }
+        Toast(text: "\(sectionTitle) \(dataManager[section].count)개").show()
+    }
 }
 
 extension MainViewController: UITableViewDelegate {
@@ -126,6 +134,11 @@ extension MainViewController: UITableViewDelegate {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MenuSectionHeader.reuseIdentifier) as? MenuSectionHeader else { return nil }
         header.keywordLabel.text = dataManager.keywordList[section]
         header.sectionTitle.text = dataManager.titleList[section]
+        header.section = section
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(sectionHeaderTapped(_:)))
+        header.addGestureRecognizer(recognizer)
+        
         return header
     }
     
