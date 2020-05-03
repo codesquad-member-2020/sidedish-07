@@ -19,6 +19,7 @@ class MenuSectionHeader: UITableViewHeaderFooterView {
         label.font = UIFont.boldSystemFont(ofSize: 17.0)
         return label
     }()
+    var section: Int?
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
