@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="feda31d2-a576-4a5e-a779-0efc7233642e" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sidedish" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sidedish" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sidedish" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1bAFJLdDuiyAXivyyxHu9rMQ0Y0" />
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.SidedishApplication">
+    <configuration name="BE [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="SidedishApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sidedish.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.codesquad.sidedish.SidedishApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <envs>
+        <env name="JASYPT_ENCRYPTOR_PASSWORD" value="sidedish" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.BE [build]" />
+      <item itemvalue="Spring Boot.SidedishApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.BE [build]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="feda31d2-a576-4a5e-a779-0efc7233642e" name="Default Changelist" comment="" />
+      <created>1588066918910</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588066918910</updated>
+      <workItem from="1588066923264" duration="2841000" />
+      <workItem from="1588085817616" duration="12507000" />
+      <workItem from="1588127568772" duration="869000" />
+      <workItem from="1588140993181" duration="4504000" />
+      <workItem from="1588493964939" duration="675000" />
+      <workItem from="1588508983796" duration="11000" />
+      <workItem from="1588747507806" duration="359000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="241" y="144" width="1204" height="676" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588067639915">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="241" y="144" width="1204" height="676" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1588067639915" />
+    <state x="653" y="248" key="#com.intellij.ide.util.MemberChooser" timestamp="1588094623420">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="653" y="248" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1588094623420" />
+    <state x="591" y="362" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog" timestamp="1588102181817">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="591" y="362" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1588102181817" />
+    <state width="1638" height="2" key="GridCell.Tab.0.bottom" timestamp="1588154526280">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="2" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1588154526280" />
+    <state width="1638" height="295" key="GridCell.Tab.0.bottom/60.23.1620.1027@60.23.1620.1027" timestamp="1588095189223" />
+    <state width="1638" height="2" key="GridCell.Tab.0.center" timestamp="1588154526279">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="2" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1588154526279" />
+    <state width="1638" height="295" key="GridCell.Tab.0.center/60.23.1620.1027@60.23.1620.1027" timestamp="1588095189222" />
+    <state width="1638" height="2" key="GridCell.Tab.0.left" timestamp="1588154526278">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="2" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1588154526278" />
+    <state width="1638" height="295" key="GridCell.Tab.0.left/60.23.1620.1027@60.23.1620.1027" timestamp="1588095189221" />
+    <state width="1638" height="2" key="GridCell.Tab.0.right" timestamp="1588154526280">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="2" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1588154526280" />
+    <state width="1638" height="295" key="GridCell.Tab.0.right/60.23.1620.1027@60.23.1620.1027" timestamp="1588095189223" />
+    <state width="1638" height="2" key="GridCell.Tab.1.bottom" timestamp="1588154526283">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="2" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1588154526283" />
+    <state width="1638" height="343" key="GridCell.Tab.1.bottom/55.23.1625.1027@55.23.1625.1027" timestamp="1588097524185" />
+    <state width="1638" height="582" key="GridCell.Tab.1.bottom/60.23.1620.1027@60.23.1620.1027" timestamp="1588098830448" />
+    <state width="1638" height="503" key="GridCell.Tab.1.bottom/62.23.1618.1027@62.23.1618.1027" timestamp="1588096890110" />
+    <state width="1638" height="2" key="GridCell.Tab.1.center" timestamp="1588154526281">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="2" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1588154526281" />
+    <state width="1638" height="343" key="GridCell.Tab.1.center/55.23.1625.1027@55.23.1625.1027" timestamp="1588097524183" />
+    <state width="1638" height="582" key="GridCell.Tab.1.center/60.23.1620.1027@60.23.1620.1027" timestamp="1588098830447" />
+    <state width="1638" height="503" key="GridCell.Tab.1.center/62.23.1618.1027@62.23.1618.1027" timestamp="1588096890109" />
+    <state width="1638" height="2" key="GridCell.Tab.1.left" timestamp="1588154526281">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="2" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1588154526281" />
+    <state width="1638" height="343" key="GridCell.Tab.1.left/55.23.1625.1027@55.23.1625.1027" timestamp="1588097524183" />
+    <state width="1638" height="582" key="GridCell.Tab.1.left/60.23.1620.1027@60.23.1620.1027" timestamp="1588098830446" />
+    <state width="1638" height="503" key="GridCell.Tab.1.left/62.23.1618.1027@62.23.1618.1027" timestamp="1588096890108" />
+    <state width="1638" height="2" key="GridCell.Tab.1.right" timestamp="1588154526282">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="2" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1588154526282" />
+    <state width="1638" height="343" key="GridCell.Tab.1.right/55.23.1625.1027@55.23.1625.1027" timestamp="1588097524184" />
+    <state width="1638" height="582" key="GridCell.Tab.1.right/60.23.1620.1027@60.23.1620.1027" timestamp="1588098830448" />
+    <state width="1638" height="503" key="GridCell.Tab.1.right/62.23.1618.1027@62.23.1618.1027" timestamp="1588096890110" />
+    <state width="1638" height="2" key="GridCell.Tab.2.bottom" timestamp="1588154526284">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="2" key="GridCell.Tab.2.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1588154526284" />
+    <state width="1638" height="295" key="GridCell.Tab.2.bottom/60.23.1620.1027@60.23.1620.1027" timestamp="1588095189130" />
+    <state width="1638" height="2" key="GridCell.Tab.2.center" timestamp="1588154526283">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="2" key="GridCell.Tab.2.center/0.0.1680.1050@0.0.1680.1050" timestamp="1588154526283" />
+    <state width="1638" height="295" key="GridCell.Tab.2.center/60.23.1620.1027@60.23.1620.1027" timestamp="1588095189129" />
+    <state width="1638" height="2" key="GridCell.Tab.2.left" timestamp="1588154526283">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="2" key="GridCell.Tab.2.left/0.0.1680.1050@0.0.1680.1050" timestamp="1588154526283" />
+    <state width="1638" height="295" key="GridCell.Tab.2.left/60.23.1620.1027@60.23.1620.1027" timestamp="1588095189128" />
+    <state width="1638" height="2" key="GridCell.Tab.2.right" timestamp="1588154526284">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="2" key="GridCell.Tab.2.right/0.0.1680.1050@0.0.1680.1050" timestamp="1588154526284" />
+    <state width="1638" height="295" key="GridCell.Tab.2.right/60.23.1620.1027@60.23.1620.1027" timestamp="1588095189130" />
+    <state x="498" y="282" width="683" height="486" key="find.popup" timestamp="1588153541511">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="498" y="282" width="683" height="486" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1588153541511" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="(String)claims.get(USER_INFO_KEY)" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
