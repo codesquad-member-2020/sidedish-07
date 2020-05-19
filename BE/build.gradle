@@ -1,0 +1,48 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.codesquad'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+bootWar {
+	archiveFileName = "ROOT.war"
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.19'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	compile 'io.jsonwebtoken:jjwt:0.9.0'
+	compile group: 'org.aspectj', name: 'aspectjrt', version: '1.9.5'
+	compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.5'
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+	compile group: 'com.sun.xml.bind', name: 'jaxb-core', version: '2.3.0'
+	compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.3.0'
+
+	compile group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.2'
+}
+
+test {
+	useJUnitPlatform()
+}
